@@ -1,0 +1,102 @@
+:root {
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --primary-text-color: #e0e0e0;
+    --secondary-text-color: #a0a0a0;
+    --accent-color: #fa5b0f;
+    --hover-color: #282828;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    height: 100%;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5vh;
+    overflow-y: auto;
+}
+.container {
+    max-width: 680px;
+    width: 90%;
+    text-align: center;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease-out forwards;
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+header {
+    margin-bottom: 2rem;
+}
+.profile-picture {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-color);
+    margin-bottom: 1rem;
+}
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+header p {
+    color: var(--secondary-text-color);
+    font-size: 1rem;
+}
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.link-button {
+    background-color: var(--surface-color);
+    color: var(--primary-text-color);
+    padding: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid var(--hover-color);
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+.link-button:hover {
+    transform: scale(1.03);
+    background-color: var(--hover-color);
+    border-color: var(--accent-color);
+}
+footer {
+    margin-top: 2.5rem;
+}
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.social-icons a {
+    color: var(--secondary-text-color);
+    transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.social-icons a:hover {
+    color: var(--primary-text-color);
+    transform: translateY(-3px);
+}
+.social-icons svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
