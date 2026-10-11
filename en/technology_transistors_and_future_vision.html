@@ -1,18 +1,25 @@
+<!--
+* Author:    Kerem Uysal
+* Created:   12.11.2025
+* Version:   3.0 (2026 Overhaul)
+* 𝓚𝓮𝓻𝓮𝓶 𝓤𝔂𝓼𝓪𝓵
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="HTML, CSS, JavaScript, Kerem Uysal, Kerem, Uysal, Blog, Technology, Transistor, Artificial Intelligence, Moore's Law">
+    <meta name="keywords" content="Kerem Uysal, Blog, Technology, Transistor, Artificial Intelligence, Moore's Law, TSMC, GAAFET, FinFET">
     <meta name="description" content="The Digital Universe's Cornerstone: Transistor Wars, the Rise of Artificial Intelligence, and the Future of Technology">
     <meta name="author" content="Kerem Uysal">
     <title>Technology, Transistors, and Future Vision | Kerem Uysal Blog</title>
+
     <link rel="canonical" href="https://keremuysal.com/en/technology_transistors_and_future_vision.html" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="/css/blogcss.css" />
-    <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
-    
-    <meta property="og:type" content="website" />
+    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
+    <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/technology_transistors_and_future_vision.html" /> 
+    <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
+
+    <meta property="og:type" content="article" />
     <meta property="og:url" content="https://keremuysal.com/en/technology_transistors_and_future_vision.html" />
     <meta property="og:title" content="Technology, Transistors, and Future Vision | Kerem Uysal Blog" />
     <meta property="og:description" content="The Digital Universe's Cornerstone: Transistor Wars, the Rise of Artificial Intelligence, and the Future of Technology" />
@@ -23,10 +30,27 @@
     <meta property="twitter:title" content="Technology, Transistors, and Future Vision | Kerem Uysal Blog" />
     <meta property="twitter:description" content="The Digital Universe's Cornerstone: Transistor Wars, the Rise of Artificial Intelligence, and the Future of Technology" />
     <meta property="twitter:image" content="https://keremuysal.com/img/blog/1.webp" />
-    
-    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
-    <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/technology_transistors_and_future_vision.html" /> 
-    <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
+
+    <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/blogcss.css" />
+
+    <!-- FOUC Prevention Script -->
+    <script>
+      (function() {
+         const savedTheme = localStorage.getItem('theme');
+         const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+         if (savedTheme === 'dark' || (!savedTheme && sysDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+         } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+         }
+      })();
+    </script>
     
     <script type="application/ld+json">
     {
@@ -53,7 +77,7 @@
         }
       },
       "datePublished": "2025-11-12",
-      "dateModified": "2025-11-12"
+      "dateModified": "2026-10-11"
     }
     </script>
 </head>
@@ -62,140 +86,158 @@
       <div class="container">
           <div class="row">
               <div class="brand-name">
-                  <a href="/en/" class="logo">Kerem Uysal</a>
+                  <a href="/en/index.html" class="logo">Kerem Uysal</a>
               </div>
-              <div class="hamburger">
-                  <i class="fas fa-bars" aria-label="Toggle Menu"></i>
-              </div>
+
               <nav class="navbar">
                   <ul>
-                      <li><a href="/en/">Home</a></li>
+                      <li><a href="/en/index.html">Home</a></li>
                       <li><a href="/en/muzik.html">Music Portfolio</a></li>
                       <li><a href="/en/blog.html" class="active">Blog</a></li>
+                      <li><a href="/en/updates.html">Updates</a></li>
                   </ul>
               </nav>
-              <ul class="language">
-                  <li><a href="https://keremuysal.com/en/technology_transistors_and_future_vision.html" class="active2">EN</a></li>
-                  <li><a href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html">TR</a></li>
+
+              <div class="header-right">
+                  <ul class="language">
+                      <li><a href="/en/technology_transistors_and_future_vision.html" class="active2">EN</a></li>
+                      <li><a href="/transistor-yapay-zeka-teknolojinin-gelecegi.html">TR</a></li>
                   </ul>
+                  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                      <i class="fas fa-bars"></i>
+                  </button>
+              </div>
           </div>
       </div>
     </header>
+
     <main>
       <article id="blog-post">
           <div class="container">
               <div class="row">
                   <div class="blog-content">
                     <header class="blog-header">
-                        <h1>The Cornerstone of the Digital Universe: Transistor Wars, the Rise of Artificial Intelligence, and the Future of Technology</h1>
+                        <h1>The Digital Universe's Cornerstone: Transistor Wars, the Rise of AI, and the Future of Technology</h1>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> November 12, 2025</span>
+                            <span><i class="far fa-user"></i> Kerem Uysal</span>
+                            <span><i class="fas fa-tag"></i> Hardware, Artificial Intelligence</span>
+                        </div>
                     </header>
                     
                     <blockquote class="author-note">
-                        <p>Hello, welcome to my first blog. I'm planning to share blog posts on my site from time to time. If you want me to start a newsletter, just reach out.</p>
+                        <p>Welcome to my blog! I regularly share engineering deep-dives into bioengineering, hardware, embedded computing, and machine learning.</p>
                     </blockquote>
                     
-                    <h2>Introduction: The Power of the Invisible Engine</h2>
-                    <p>The technology that powers every moment of modern life, from the smartphone in our pocket to the laptop on our desk and the data centers in the cloud, can seem like abstract magic. While navigating the fluid interface of a device equipped with Apple's M4 processor or marveling at the capabilities of an AI application powered by Nvidia's latest GPU, it's easy to overlook the tangible source of this power. However, at the heart of these digital experiences lies an invisible engine, tens of thousands of times smaller than a human hair: the transistor. These microscopic switches are the fundamental building blocks of the digital revolution and uphold all of modern electronics. For example, inside the Apple M4 processor, exactly 28 billion transistors switch on and off trillions of times per second to execute our commands. For more than half a century, a guiding principle has set the pace of development for this microscopic world: Moore's Law. This law predicted that the number of transistors on a chip would roughly double every two years, imposing a relentless pace of progress on the technology industry.</p>
-                    <p>In this article, we will delve deep into the forces behind this relentless progress, the technologies that make it possible, and the challenges shaping its future. The main players on this stage are TSMC, the master foundry producing the world's most advanced chips; Apple, the architect of efficiency and integration; Nvidia, the champion of raw processing power; and artificial intelligence, the insatiable consumer of all this power. As we approach the physical limits of silicon in this critical era, the tech world faces a fundamental question: Is the age of exponential growth coming to an end, or is it merely transforming into something new and more complex?</p>
+                    <h2>Introduction: Power of the Invisible Engine</h2>
+                    <p>From the smartphones in our pockets to laptops on our desks and cloud data centers across the globe, modern technology can often feel like abstract wizardry. When navigating the seamless UI of an Apple Silicon device or marveling at the capability of state-of-the-art AI systems accelerated by Nvidia GPUs, it is easy to lose sight of the tangible physical engine making it all possible: the transistor. Tens of thousands of times smaller than a human hair, these microscopic switches form the bedrock of digital computation.</p>
+                    <p>For more than half a century, the pace of advancement has been guided by Moore's Law: Gordon Moore's empirical observation that the number of transistors on a microchip doubles roughly every two years. In this article, we dive into the semiconductor supply chain, TSMC's pure-play foundry model, and the evolutionary architectural leaps from 2D Planar to 3D FinFET and GAAFET nanosheets.</p>
                     
                     <figure class="image-placeholder">
-                        <img class="img1" src="/img/blog/1.webp" alt="An image symbolizing the transistors at the core of technology">
+                        <img src="/img/blog/1.webp" alt="Semiconductor microscopic transistors illustration" width="1344" height="768" loading="lazy">
+                        <figcaption>Figure 1: Semiconductor fabrication and microscopic transistor architecture</figcaption>
                     </figure>
                     
-                    <h2>So, What is TSMC?</h2>
-                    <p>TSMC stands for <strong>Taiwan Semiconductor Manufacturing Company</strong> Founded in 1987 by Morris Chang, this company revolutionized the technology industry.</p>
-                    <p>How? By inventing the <strong>"pure-play foundry"</strong> model.</p>
-                    <p>Let's explain what this model means with a simple analogy:</p>
-                    <ul>
-                        <li><strong>Designers (Fabless):</strong> Think of companies like Apple, Nvidia, AMD, and Qualcomm. They are like incredibly talented architects. They <em>design</em>. every detail of the house (the chip)—how many rooms it will have, how much energy it will consume, and how fast it will be. However, they don't have their own construction crews (factories).</li>
-                        <li><strong>Manufacturer (Foundry):</strong> This is where TSMC comes in. TSMC is the world's most advanced construction firm. It takes Apple's blueprint (design) and turns it into a physical house (a chip)</li>
-                    </ul>
-                    <p>The reason TSMC is called "pure" is that <strong>it does not design and sell chips under its own brand.</strong> They have only one job: to manufacture their customers' designs with the most advanced technology and the highest quality possible.</p>
-                    <p>This business model allowed companies like Apple to avoid the billion-dollar cost of building a factory and to dedicate all their focus solely on making <em>the best design</em>.</p>
+                    <h2>What Exactly is TSMC?</h2>
+                    <p>TSMC stands for <strong>Taiwan Semiconductor Manufacturing Company</strong>. Founded in 1987 by Morris Chang, the company pioneered the <strong>pure-play foundry model</strong>. Fabless designers such as Apple, Nvidia, AMD, and Qualcomm design chips, while TSMC acts as the master fabricator transforming architectural schematics into physical silicon wafers.</p>
 
-                    <h3>What Makes TSMC So Important?</h3>
-                    <p>For a company to be "important," it's not enough to just be big; it must also be <em>irreplaceable</em>. TSMC is exactly that.</p>
-                    
                     <figure class="image-placeholder">
-                        <img src="/img/blog/2.webp" alt="A graph showing Moore's Law">
+                        <img src="/img/blog/2.webp" alt="Moore's Law transistor count growth chart" width="1411" height="859" loading="lazy">
+                        <figcaption>Figure 2: Historical growth of transistor density under Moore's Law</figcaption>
                     </figure>
                     
                     <h2>Moore's Law: The Industry's Self-Fulfilling Prophecy</h2>
-                    <p>Now, let's return to Moore's Law. Although often perceived as a law of physics, Moore's Law is actually the product of a powerful economic and industrial observation that has guided the course of the technology industry. Over time, this "law" transformed into a self-fulfilling prophecy, drawing the roadmap for the entire semiconductor sector.</p>
-
-                    <h3>The Origin and Evolution of Moore's Law</h3>
-                    <p>It all began in 1965 with an article published in Electronics Magazine by Gordon Moore, one of Intel's co-founders. Moore observed that the number of components on integrated circuits was doubling approximately every year and predicted this trend would continue for at least another ten years. Moore updated this observation in 1975, revising this period to "every two years." Although he himself never called this observation a "law," the phrase became the golden rule of the tech world.</p>
+                    <p>Beyond being an observation of engineering progress, Moore's Law evolved into an economic engine. Exponential transistor scaling steadily reduced cost per transistor, bringing enterprise computing power into consumer pockets. As physical limits challenge classical scaling, chipmakers are turning to chiplets, advanced packaging, and non-silicon substrates.</p>
                     
-                    <h3>The Economic Engine</h3>
-                    <p>The genius of Moore's Law lies not only in its technical foresight but also in its inclusion of a powerful economic principle. The law predicted not only that the number of transistors fitting into a unit area would increase exponentially, but also that the cost per transistor would steadily decrease. This dual effect ignited the economic engine that allowed technology to become both more powerful and more accessible. As computers became more powerful, their prices dropped, enabling technology to move out of laboratories and into our homes and pockets.</p>
-                    
-                    <h3>The Self-Fulfilling Prophecy</h3>
-                    <p>Moore's prediction quickly evolved from an observation into a target and a competitive benchmark for the industry. Semiconductor manufacturers understood they had to keep up with this pace because they knew their competitors were investing billions in R&D toward this goal. This situation turned Moore's Law into a prophecy: the industry made the investments that would validate the law precisely because it believed the law would hold true. The slowing of this prophecy is not just a technical challenge; it is a profound business model crisis. The corporate strategies of tech giants, their product cycles (a more powerful iPhone every year), marketing promises, and investor expectations have been built upon this predictable, exponential performance promise for decades. If a company cannot deliver a product twice as powerful in two years, how can it justify new models and high price tags? Therefore, reaching the limits of Moore's Law is more than just a technical problem for engineers; it is an existential issue threatening the economic model of the entire tech industry. This is the fundamental reason why companies are aggressively pursuing alternative paths to performance improvement, such as chiplets and new architectures. The issue is not just about making faster chips; it is about preserving the economic model that has fueled the technology industry for 50 years.</p>
-                    
-                    <h2>Dancing on the Atomic Frontier: The Evolution of Transistor Technology</h2>
-                    <p>To sustain the breakneck progress predicted by Moore's Law, transistors themselves had to undergo a fundamental evolution. The transition from two-dimensional planes to three-dimensional architectures was the most critical technological leap that ensured the law's continuity in the modern era. Today, however, to descend to 3-nanometer nodes and below, a new evolutionary step has become inevitable.</p>
+                    <h2>Dancing at the Atomic Boundary: The Evolution of Transistors</h2>
+                    <p>To sustain scaling below single-digit nanometer nodes, classical planar gate structures surrendered to 3D architectures.</p>
                     
                     <figure class="image-placeholder">
-                        <img src="/img/blog/3.webp" alt="3D comparison of Planar, FinFET, and GAAFET transistor architectures">
-                        </figure>
+                        <img src="/img/blog/3.webp" alt="Planar, FinFET, and GAAFET transistor comparison" width="1344" height="768" loading="lazy">
+                        <figcaption>Figure 3: Evolution from 2D Planar to 3D FinFET and GAAFET nanosheets</figcaption>
+                    </figure>
                     
-                    <h3>Comparison of Transistor Architectures</h3>
+                    <h3>Transistor Architecture Comparison</h3>
                     <div class="table-container">
                         <table class="blog-table">
                             <thead>
                                 <tr>
                                     <th scope="col">Technology</th>
                                     <th scope="col">Architecture</th>
-                                    <th scope="col">Key Advantage</th>
-                                    <th scope="col">Main Limitation</th>
+                                    <th scope="col">Primary Advantage</th>
+                                    <th scope="col">Key Limitation</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Planar FET</td>
                                     <td>2D (Gate on top)</td>
-                                    <td>Basic control</td>
-                                    <td>High leakage at small nodes</td>
+                                    <td>Simpler manufacturing</td>
+                                    <td>Severe leakage at sub-20nm</td>
                                 </tr>
                                 <tr>
                                     <td>FinFET</td>
-                                    <td>3D (Gate on 3 sides of the "fin")</td>
-                                    <td>Improved electrostatic control</td>
-                                    <td>Limited control below 5 nm</td>
+                                    <td>3D (Gate wraps 3 sides of fin)</td>
+                                    <td>Enhanced electrostatic control</td>
+                                    <td>Sub-optimal control below 3nm</td>
                                 </tr>
                                 <tr>
                                     <td>GAAFET (Nanosheet)</td>
-                                    <td>3D (Gate on 4 sides of the "nanosheet")</td>
-                                    <td>Superior electrostatic control</td>
-                                    <td>Manufacturing complexity</td>
+                                    <td>3D (Gate completely encircles channels)</td>
+                                    <td>Superior electrostatic gating</td>
+                                    <td>Extreme lithography complexity</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     
                     <h2>Summary</h2>
-                    <p>In this section, we discussed the importance of transistors, which form the foundation of the modern digital world, and Moore's Law, which has guided the technology industry for half a century. We examined how Moore's Law transformed from merely a technical observation into an economic engine and a self-fulfilling prophecy that shapes the industry. We detailed the critical evolution of transistor architecture—from two-dimensional Planar designs to three-dimensional FinFET and ultimately to GAAFET structures that maximize control at atomic limits—in order to overcome the physical challenges of sustaining this breakneck progress.</p>
+                    <p>As semiconductor physics approaches the atomic threshold, the pursuit of computational efficiency continues through novel materials, gate-all-around architectures, and specialized AI accelerators.</p>
                     
-                    <p><a href="/en/blog.html">Back to blog home</a></p>
+                    <p><a href="/en/blog.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 14px;"><i class="fas fa-arrow-left"></i> Back to Blog List</a></p>
 
-                    <h2>Author & Contact</h2>
-                    <p>
-                        <strong>Date Published:</strong> November 12, 2025<br>
-                        <strong>Author:</strong> Kerem Uysal<br>
-                        <strong>Contact:</strong> <a href="mailto:info@keremuysal.com">info@keremuysal.com</a>
-                    </p>
+                    <div style="margin-top: 40px; padding: 20px; background: var(--background-dark); border-radius: 8px; border: 1px solid var(--border-light);">
+                        <p style="margin: 0; font-size: 14px; color: var(--text-muted);">
+                            <strong>Author:</strong> Kerem Uysal &nbsp;|&nbsp; 
+                            <strong>Contact:</strong> <a href="mailto:info@keremuysal.com">info@keremuysal.com</a>
+                        </p>
+                    </div>
                   </div>
               </div>
           </div>
       </article>
     </main>
+
     <footer>
-      </footer>
+      <div class="container">
+         <div class="footer-logo">Kerem Uysal</div>
+         <div class="social">
+            <a href="https://github.com/keremuysal" aria-label="My GitHub Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/akeremuysal" aria-label="My LinkedIn Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/keremuysaljpg" aria-label="My Twitter Account" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/keremuysaljpg/" aria-label="My Instagram Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/keremuysal" aria-label="My YouTube Channel" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+         </div>
+         <div class="footer-links">
+            <a href="/en/updates.html">Site Updates</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="/robots.txt">Robots.txt</a>
+         </div>
+         <div class="copyright">
+            <div class="renewable-container">
+               <img src="/img/100.webp" alt="Renewable Energy" width="28" height="28" loading="lazy">
+               <span class="renewable-energy">This site is powered by 100% renewable energy.</span>
+            </div>
+            <p>© <span id="year">2026</span> | Kerem Uysal. All rights reserved. (v3.0)</p>
+         </div>
+      </div>
+    </footer>
+
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
     </button>
-    <script src="/js/blogapp.js" defer></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2778068743863439" crossorigin="anonymous"></script>
+
+    <script src="/js/app.js" defer></script>
 </body>
 </html>

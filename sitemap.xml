@@ -1,59 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://keremuysal.com/</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/en/index.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/blog.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/en/blog.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/muzik.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/en/muzik.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/en/technology_transistors_and_future_vision.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/merhabadunya2.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/en/merhabadunya2.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/updates.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/en/updates.html</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/bio/</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
-<url>
-<loc>https://keremuysal.com/docs/makale.pdf</loc>
-<lastmod>2025-11-12T13:29:59+03:00</lastmod>
-</url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://keremuysal.com/</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/en/index.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/blog.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/en/blog.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/muzik.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/en/muzik.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/updates.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/en/updates.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/en/technology_transistors_and_future_vision.html</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://keremuysal.com/bio/</loc>
+    <lastmod>2026-10-11T22:00:00+03:00</lastmod>
+    <priority>0.7</priority>
+  </url>
 </urlset>

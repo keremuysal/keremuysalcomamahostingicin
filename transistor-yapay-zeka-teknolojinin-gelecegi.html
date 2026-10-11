@@ -1,30 +1,56 @@
+<!--
+* Author:    Kerem Uysal
+* Created:   12.11.2025
+* Version:   3.0 (2026 Overhaul)
+* 𝓚𝓮𝓻𝓮𝓶 𝓤𝔂𝓼𝓪𝓵
+-->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="HTML, CSS, JavaScript, Kerem Uysal, Kerem, Uysal, Blog, Teknoloji, Transistör, Yapay Zeka, Moore Yasası">
+    <meta name="keywords" content="Kerem Uysal, Blog, Teknoloji, Transistör, Yapay Zeka, Moore Yasası, TSMC, GAAFET, FinFET">
     <meta name="description" content="Dijital Evrenin Temel Taşı: Transistör Savaşları, Yapay Zekanın Yükselişi ve Teknolojinin Geleceği">
     <meta name="author" content="Kerem Uysal">
     <title>Teknoloji, Transistörler ve Gelecek Vizyonu | Kerem Uysal Blog</title>
+
     <link rel="canonical" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
-    <meta property="og:type" content="website" />
+    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
+    <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/technology_transistors_and_future_vision.html" /> 
+    <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
+
+    <meta property="og:type" content="article" />
     <meta property="og:url" content="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
     <meta property="og:title" content="Teknoloji, Transistörler ve Gelecek Vizyonu | Kerem Uysal Blog" />
     <meta property="og:description" content="Bu yazıda, transistörlerin evrimini, Moore Yasası'nın sınırlarını ve yapay zekanın teknoloji devleri arasındaki yarışı nasıl körüklediğini inceliyoruz." />
     <meta property="og:image" content="https://keremuysal.com/img/blog/1.webp" />
+
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
     <meta property="twitter:title" content="Teknoloji, Transistörler ve Gelecek Vizyonu | Kerem Uysal Blog" />
     <meta property="twitter:description" content="Bu yazıda, transistörlerin evrimini, Moore Yasası'nın sınırlarını ve yapay zekanın teknoloji devleri arasındaki yarışı nasıl körüklediğini inceliyoruz." />
     <meta property="twitter:image" content="https://keremuysal.com/img/blog/1.webp" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="/css/blogcss.css" />
+
     <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
-    
-    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
-    <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/technology_transistors_and_future_vision.html" /> 
-    <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/blogcss.css" />
+
+    <!-- FOUC Prevention Script -->
+    <script>
+      (function() {
+         const savedTheme = localStorage.getItem('theme');
+         const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+         if (savedTheme === 'dark' || (!savedTheme && sysDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+         } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+         }
+      })();
+    </script>
     
     <script type="application/ld+json">
     {
@@ -51,7 +77,7 @@
         }
       },
       "datePublished": "2025-11-12",
-      "dateModified": "2025-11-12"
+      "dateModified": "2026-10-11"
     }
     </script>
 </head>
@@ -62,23 +88,29 @@
               <div class="brand-name">
                   <a href="/" class="logo">Kerem Uysal</a>
               </div>
-              <div class="hamburger">
-                  <i class="fas fa-bars" aria-label="Menüyü aç/kapat"></i>
-              </div>
+
               <nav class="navbar">
                   <ul>
                       <li><a href="/">Anasayfa</a></li>
                       <li><a href="/muzik.html">Müzik Portfolyo</a></li>
                       <li><a href="/blog.html" class="active">Blog</a></li>
+                      <li><a href="/updates.html">Güncellemeler</a></li>
                   </ul>
               </nav>
-              <ul class="language">
-                  <li><a href="https://keremuysal.com/en/technology_transistors_and_future_vision.html">EN</a></li>
-                  <li><a href="https://keremuysal.com/transistor-yapay-zeka-teknolojinin-gelecegi.html" class="active2">TR</a></li>
+
+              <div class="header-right">
+                  <ul class="language">
+                      <li><a href="/en/technology_transistors_and_future_vision.html">EN</a></li>
+                      <li><a href="/transistor-yapay-zeka-teknolojinin-gelecegi.html" class="active2">TR</a></li>
                   </ul>
+                  <button class="hamburger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+                      <i class="fas fa-bars"></i>
+                  </button>
+              </div>
           </div>
       </div>
     </header>
+
     <main>
       <article id="blog-post">
           <div class="container">
@@ -86,18 +118,24 @@
                   <div class="blog-content">
                     <header class="blog-header">
                         <h1>Dijital Evrenin Temel Taşı: Transistör Savaşları, Yapay Zekanın Yükselişi ve Teknolojinin Geleceği</h1>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 12 Kasım 2025</span>
+                            <span><i class="far fa-user"></i> Kerem Uysal</span>
+                            <span><i class="fas fa-tag"></i> Donanım, Yapay Zeka</span>
+                        </div>
                     </header>
                     
                     <blockquote class="author-note">
-                        <p>Selamlar ilk bloguma hoşgeldiniz. Arasıra blog paylaşmayı düşünüyorum sitemde. Bülten açmamı istiyorsanız ulaşmanız yeterli olur.</p>
+                        <p>Selamlar, bloguma hoş geldiniz. Biyomühendislik, donanım, gömülü sistemler ve yapay zeka alanlarında derinlemesine incelemeler paylaşıyorum.</p>
                     </blockquote>
                     
                     <h2>Giriş: Görünmez Motorun Gücü</h2>
-                    <p>Cebimizdeki akıllı telefondan, masamızdaki dizüstü bilgisayara ve buluttaki veri merkezlerine kadar modern yaşamın her anına güç veren teknoloji, soyut bir sihir gibi görünebilir. Apple'ın M4 işlemcisiyle donatılmış bir cihazın akıcı arüyüzünde gezinirken veya Nvidia'nın en yeni GPU'su tarafından desteklenen bir yapay zeka uygulamasının yeteneklerine hayran kalırken, bu gücün somut kaynağını gözden kaçırmak kolaydır. Ancak bu dijital deneyimlerin temelinde, insan saç telinden on binlerce kat daha küçük, görünmez bir motor yatar: transistör. Bu mikroskobik anahtarlar, dijital devrimin temel yapı taşlarıdır ve modern elektroniğin tamamını ayakta tutarlar. Örneğin, Apple M4 işlemcinin içinde tam 28 milyar adet transistör, saniyede trilyonlarca kez açılıp kapanarak komutlarımızı yerine getirir. Yarım yüzyıldan fazla bir süredir bu mikroskobik dünyanın gelişim hızını belirleyen bir kılvuz ilke olmuştur: Moore Yasası. Bu yasa, bir çip üzerindeki transistör sayısının yaklaşık her iki yılda bir ikiye katlanacağını öngörerek teknoloji endüstrisine amansız bir ilerleme temposu dayatmıştır.</p>
+                    <p>Cebimizdeki akıllı telefondan masamızdaki dizüstü bilgisayara ve buluttaki veri merkezlerine kadar modern yaşamın her anına güç veren teknoloji, soyut bir sihir gibi görünebilir. Apple'ın M serisi işlemcisiyle donatılmış bir cihazın akıcı arayüzünde gezinirken veya Nvidia'nın en yeni GPU'su tarafından desteklenen bir yapay zeka uygulamasının yeteneklerine hayran kalırken, bu gücün somut kaynağını gözden kaçırmak kolaydır. Ancak bu dijital deneyimlerin temelinde, insan saç telinden on binlerce kat daha küçük, görünmez bir motor yatar: transistör. Bu mikroskobik anahtarlar, dijital devrimin temel yapı taşlarıdır ve modern elektroniğin tamamını ayakta tutarlar. Örneğin, modern bir mobil işlemcinin içinde onlarca milyar adet transistör, saniyede trilyonlarca kez açılıp kapanarak komutlarımızı yerine getirir. Yarım yüzyıldan fazla bir süredir bu mikroskobik dünyanın gelişim hızını belirleyen bir kılvuz ilke olmuştur: Moore Yasası. Bu yasa, bir çip üzerindeki transistör sayısının yaklaşık her iki yılda bir ikiye katlanacağını öngörerek teknoloji endüstrisine amansız bir ilerleme temposu dayatmıştır.</p>
                     <p>Bu yazıda, bu amansız ilerlemenin arkasındaki güçleri, bu ilerlemeyi mümkün kılan teknolojileri ve bu ilerlemenin geleceğini şekillendiren zorlukları derinlemesine inceleyeceğiz. Sahnenin başrol oyuncuları; dünyanın en gelişmiş çiplerini üreten usta dökümcü TSMC, verimlilik ve entegrasyonun mimarı Apple, ham işlem gücünün şampiyonu Nvidia ve tüm bu gücün doymak bilmez tüketicisi yapay zekadır. Silikonun fiziksel sınırlarına yaklaştığımız bu kritik dönemde, teknoloji dünyası temel bir soruyla yüzleşiyor: Üstel büyüme çağı sona mı eriyor, yoksa sadece yeni ve daha karmaşık bir şeye mi dönüşüyor?</p>
                     
                     <figure class="image-placeholder">
-                        <img class="img1" src="img/blog/1.webp" alt="Teknolojinin temelindeki transistörleri simgeleyen bir görsel">
+                        <img src="/img/blog/1.webp" alt="Teknolojinin temelindeki transistörleri simgeleyen görsel" width="1344" height="768" loading="lazy">
+                        <figcaption>Görsel 1: Yarı iletken teknolojisi ve mikroskobik transistör mimarisi</figcaption>
                     </figure>
                     
                     <h2>Peki Nedir Bu TSMC?</h2>
@@ -115,27 +153,29 @@
                     <p>Bir şirketin "önemi" olması için sadece büyük olması yetmez, aynı zamanda <em>yeri doldurulamaz</em> olması gerekir. TSMC, tam olarak budur.</p>
                     
                     <figure class="image-placeholder">
-                        <img src="img/blog/2.webp" alt="Moore Yasası'nı gösteren bir grafik">
+                        <img src="/img/blog/2.webp" alt="Moore Yasası'nı gösteren grafik" width="1411" height="859" loading="lazy">
+                        <figcaption>Görsel 2: Moore Yasası'nın yıllara göre transistör yoğunluğu artışı</figcaption>
                     </figure>
                     
                     <h2>Moore Yasası: Sektörün Kendi Kendini Gerçekleştiren Kehaneti</h2>
-                    <p>Şimdi tekrar gelelim Moore Yasasına. Moore Yasası, genellikle bir fizik kanunu gibi algılansa da, aslında teknoloji endüstrisinin seyrini belirleyen güçlü bir ekonomik ve endüstriyel gözlemin ürünüdür. Bu "yasa", zamanla kendi kendini gerçekleştiren bir kehanete dönüşerek tüm yarı iletken sektörünün yol haritasını çizmiştir.</p>
+                    <p>Moore Yasası, genellikle bir fizik kanunu gibi algılansa da, aslında teknoloji endüstrisinin seyrini belirleyen güçlü bir ekonomik ve endüstriyel gözlemin ürünüdür. Bu "yasa", zamanla kendi kendini gerçekleştiren bir kehanete dönüşerek tüm yarı iletken sektörünün yol haritasını çizmiştir.</p>
 
                     <h3>Kökeni</h3>
                     <p>Her şey 1965 yılında, Intel'in kurucularından Gordon Moore'un Electronics Magazine'de yayımlanan makalesiyle başladı. Moore, entegre devreler üzerindeki bileşen sayısının her yıl yaklaşık iki katına çıktığını gözlemlemiş ve bu eğilimin en az on yıl daha devam edeceğini öngörmüştü. Moore, bu gözlemini 1975'te güncelleyerek bu süreyi "her iki yılda bir" olarak revize etti. Kendisi bu gözlemi hiçbir zaman bir "yasa" olarak adlandırmamış olsa da, bu ifade teknoloji dünyasının altın kuralı haline geldi.</p>
                     
                     <h3>Ekonomik Motor</h3>
-                    <p>Moore Yasası'nın dehası, sadece teknik bir öngörü olmasında değil, aynı zamanda güçlü bir ekonomik prensibi de içermesinde yatar. Yasa, yalnızca birim alana sığdırılan transistör sayısının katlanarak artacağını değil, aynı zamanda transistör başına düşen maliyetin de istikrarlı bir şekilde azalacağını öngörüyordu. Bu ikili etki, teknolojinin hem daha güçlü hem de daha erişilebilir hale gelmesini sağlayan ekonomik motoru ateşledi. Bilgisayarlar güçlenirken fiyatları düştü, bu da teknolojinin laboratuvarlardan çıkıp evlerimize ve ceplerimize girmesini sağladı.</p>
+                    <p>Moore Yasası'nın dehası, sadece teknik bir öngörü olmasında değil, aynı zamanda güçlü bir ekonomik prensibi de içermesinde yatar. Yasa, yalnızca birim alana sığdırılan transistör sayısının katlanarak artacağını değil, aynı zamanda transistör başına düşen maliyetin de istikrarlı bir şekilde azalacağını öngörüyordu. Bu ikili etki, teknolojinin hem daha güçlü hem de daha erişilebilir hale gelmesini sağlayan ekonomik motoru ateşledi.</p>
                     
                     <h3>Kendi Kendini Gerçekleştiren Kehanet</h3>
-                    <p>Moore'un öngörüsü, kısa sürede bir gözlem olmaktan çıkıp endüstri için bir hedef ve rekabet ölçütüne dönüştü. Yarı iletken üreticileri, bu tempoya ayak uydurmak zorunda olduklarını anladılar; çünkü rakiplerinin bu hedef doğrultusunda milyarlarca dolarlık Ar-Ge yatırımı yaptığını biliyorlardı. Bu durum, Moore Yasası'nı bir kehanete dönüştürdü: Endüstri, yasanın geçerli olacağına inandığı için onu geçerli kılacak yatırımları yaptı. Bu kehanetin yavaşlaması, sadece teknik bir zorluk değil, aynı zamanda köklü bir iş modeli krizidir. Teknoloji devlerinin kurumsal stratejileri, ürün döngüleri (her yıl daha güçlü bir iPhone), pazarlama vaatleri ve yatırımcı beklentileri, on yıllardır bu öngörülebilir ve katlanarak artan performans vaadi üzerine inşa edilmiştir. Eğer bir şirket, iki yıl içinde iki kat daha güçlü bir ürün sunamayacaksa, yeni modelleri ve yüksek fiyat etiketlerini nasıl meşrulaştırabilir? Bu nedenle, Moore Yasası'nın sınırlarına ulaşmak, mühendisler için teknik bir problemden öte, tüm teknoloji endüstrisinin ekonomik modelini tehdit eden varoluşsal bir sorundur. Şirketlerin çipletler ve yeni mimariler gibi alternatif performans artışı yollarına neden bu kadar agresif bir şekilde yöneldiğinin altında yatan temel neden budur. Mesele sadece daha hızlı çipler yapmak değil, teknoloji endüstrisini 50 yıldır besleyen ekonomik modeli korumaktır.</p>
+                    <p>Moore'un öngörüsü, kısa sürede bir gözlem olmaktan çıkıp endüstri için bir hedef ve rekabet ölçütüne dönüştü. Yarı iletken üreticileri, bu tempoya ayak uydurmak zorunda olduklarını anladılar; çünkü rakiplerinin bu hedef doğrultusunda milyarlarca dolarlık Ar-Ge yatırımı yaptığını biliyorlardı. Bu durum, Moore Yasası'nı bir kehanete dönüştürdü: Endüstri, yasanın geçerli olacağına inandığı için onu geçerli kılacak yatırımları yaptı.</p>
                     
                     <h2>Atomik Sınırda Dans: Transistör Teknolojisinin Evrimi</h2>
-                    <p>Moore Yasası'nın öngördüğü baş döndürücü ilerlemeyi sürdürebilmek için transistörlerin kendisi de temel bir evrim geçirmek zorunda kaldı. İki boyutlu düzlemden üç boyutlu mimarilere geçiş, modern çağda yasanın devamlılığını sağlayan en kritik teknolojik sıçrama oldu. Bugün ise 3 nanometre ve altındaki düğümlere inebilmek için yeni bir evrimsel adım kaçınılmaz hale gelmiştir.</p>
+                    <p>Moore Yasası'nın öngördüğü baş döndürücü ilerlemeyi sürdürebilmek için transistörlerin kendisi de temel bir evrim geçirmek zorunda kaldı. İki boyutlu düzlemden üç boyutlu mimarilere geçiş, modern çağda yasanın devamlılığını sağlayan en kritik teknolojik sıçrama oldu.</p>
                     
                     <figure class="image-placeholder">
-                        <img src="img/blog/3.webp" alt="Planar, FinFET ve GAAFET transistör mimarilerinin 3D karşılaştırması">
-                        </figure>
+                        <img src="/img/blog/3.webp" alt="Planar, FinFET ve GAAFET transistör mimarilerinin 3D karşılaştırması" width="1344" height="768" loading="lazy">
+                        <figcaption>Görsel 3: 2D Planar'dan 3D FinFET ve GAAFET mimarilerine evrim</figcaption>
+                    </figure>
                     
                     <h3>Transistör Mimarilerinin Karşılaştırması</h3>
                     <div class="table-container">
@@ -172,28 +212,52 @@
                     </div>
                     
                     <h2>Özet</h2>
-                    <p>Bu bölümde, modern dijital dünyanın temelini oluşturan transistörlerin ve teknoloji endüstrisine yarım asırdır yön veren Moore Yasası'nın önemini ele aldık. Moore Yasası'nın sadece teknik bir gözlemden öte, endüstriyi şekillendiren ekonomik bir motor ve kendi kendini gerçekleştiren bir kehanete nasıl dönüştüğünü inceledik. Bu baş döndürücü ilerlemeyi sürdürmenin getirdiği fiziksel zorlukların üstesinden gelmek için transistör mimarisinin iki boyutlu Planar tasarımlardan, üç boyutlu FinFET ve nihayetinde atomik sınırlarda kontrolü en üst düzeye çıkaran GAAFET yapılarına doğru olan kritik evrimini detaylandırdık.</p>
+                    <p>Modern dijital dünyanın temelini oluşturan transistörlerin ve teknoloji endüstrisine yarım asırdır yön veren Moore Yasası'nın önemini ele aldık. Fiziksel zorlukların üstesinden gelmek için transistör mimarisinin iki boyutlu Planar tasarımlardan, üç boyutlu FinFET ve nihayetinde atomik sınırlarda kontrolü en üst düzeye çıkaran GAAFET yapılarına doğru olan kritik evrimini detaylandırdık.</p>
                     
-                    <p><a href="/blog.html">Blog anasayfasına geri dön</a></p>
+                    <p><a href="/blog.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 14px;"><i class="fas fa-arrow-left"></i> Blog Listesine Geri Dön</a></p>
 
-                    <h2>Yazar & İletişim</h2>
-                    <p>
-                        <strong>Paylaşma Zamanı</strong> 12 Kasım 2025<br>
-                        <strong>Yazar:</strong> Kerem Uysal<br>
-                        <strong>İletişim:</strong> <a href="mailto:info@keremuysal.com">info@keremuysal.com</a>
-                    </p>
+                    <div style="margin-top: 40px; padding: 20px; background: var(--background-dark); border-radius: 8px; border: 1px solid var(--border-light);">
+                        <p style="margin: 0; font-size: 14px; color: var(--text-muted);">
+                            <strong>Yazar:</strong> Kerem Uysal &nbsp;|&nbsp; 
+                            <strong>İletişim:</strong> <a href="mailto:info@keremuysal.com">info@keremuysal.com</a>
+                        </p>
+                    </div>
                   </div>
               </div>
           </div>
       </article>
     </main>
+
     <footer>
-      </footer>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+      <div class="container">
+         <div class="footer-logo">Kerem Uysal</div>
+         <div class="social">
+            <a href="https://github.com/keremuysal" aria-label="GitHub hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/akeremuysal" aria-label="LinkedIn hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/keremuysaljpg" aria-label="Twitter hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/keremuysaljpg/" aria-label="Instagram hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/keremuysal" aria-label="YouTube kanalım" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+         </div>
+         <div class="footer-links">
+            <a href="/updates.html">Site Güncellemeleri</a>
+            <a href="/sitemap.xml">Site Haritası</a>
+            <a href="/robots.txt">Robots.txt</a>
+         </div>
+         <div class="copyright">
+            <div class="renewable-container">
+               <img src="/img/100.webp" alt="Yenilenebilir Enerji" width="28" height="28" loading="lazy">
+               <span class="renewable-energy">Bu sitede %100 yenilenebilir enerji kullanılmaktadır.</span>
+            </div>
+            <p>© <span id="year">2026</span> | Kerem Uysal. Tüm hakları saklıdır. (v3.0)</p>
+         </div>
+      </div>
+    </footer>
+
+    <button id="theme-toggle" class="theme-toggle" aria-label="Temayı değiştir" title="Temayı değiştir">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
     </button>
-    <script src="/js/blogapp.js" defer></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2778068743863439" crossorigin="anonymous"></script>
+
+    <script src="/js/app.js" defer></script>
 </body>
 </html>

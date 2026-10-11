@@ -1,25 +1,90 @@
 <!--
 * Author:    Kerem Uysal
 * Created:   01.08.2022
-* Rebuilt:   2025
+* Version:   3.0 (2026 Overhaul)
 * 𝓚𝓮𝓻𝓮𝓶 𝓤𝔂𝓼𝓪𝓵
 -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
    <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta name="keywords" content="HTML, CSS, JavaScript, Kerem Uysal, Kerem, Uysal, Biyomühendislik, Yazılım, Girişimcilik">
-   <meta name="description" content="Kerem Uysal'ın kişisel web sitesi. Biyomühendislik, yazılım ve müzik alanlarındaki çalışmalarını ve blog yazılarını keşfedin.">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="keywords" content="Kerem Uysal, Biyomühendislik, Gömülü Sistemler, Elektronik Prototipleme, Yazılım, Web Geliştirme, Bursa Teknik Üniversitesi">
+   <meta name="description" content="Kerem Uysal'ın kişisel web sitesi. Biyomühendislik, gömülü sistemler, yazılım ve müzik alanlarındaki çalışmalarını keşfedin.">
    <meta name="author" content="Kerem Uysal">
    <title>Kerem Uysal | Kişisel Web Sitesi</title>
+
+   <!-- SEO & Canonical -->
    <link rel="canonical" href="https://keremuysal.com/" />
    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/" />
    <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/index.html" />
    <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/" />
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
-   <link rel="stylesheet" href="/css/style.css" />
+
+   <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://keremuysal.com/" />
+   <meta property="og:title" content="Kerem Uysal | Kişisel Web Sitesi" />
+   <meta property="og:description" content="Kerem Uysal'ın kişisel web sitesi. Biyomühendislik, gömülü sistemler, yazılım ve müzik çalışmalarını keşfedin." />
+   <meta property="og:image" content="https://keremuysal.com/img/portre.webp" />
+
+   <!-- Twitter Card -->
+   <meta property="twitter:card" content="summary_large_image" />
+   <meta property="twitter:url" content="https://keremuysal.com/" />
+   <meta property="twitter:title" content="Kerem Uysal | Kişisel Web Sitesi" />
+   <meta property="twitter:description" content="Kerem Uysal'ın kişisel web sitesi. Biyomühendislik, gömülü sistemler, yazılım ve müzik çalışmalarını keşfedin." />
+   <meta property="twitter:image" content="https://keremuysal.com/img/portre.webp" />
+
+   <!-- Favicon -->
    <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
+
+   <!-- Google Fonts (Preconnect & Display Swap for Performance) -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+   <!-- Font Awesome 6 -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+   <!-- Main Stylesheet (v3.0) -->
+   <link rel="stylesheet" href="/css/style.css" />
+
+   <!-- FOUC Prevention Theme Script -->
+   <script>
+      (function() {
+         const savedTheme = localStorage.getItem('theme');
+         const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+         if (savedTheme === 'dark' || (!savedTheme && sysDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+         } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+         }
+      })();
+   </script>
+
+   <!-- Schema.org JSON-LD Structured Data -->
+   <script type="application/ld+json">
+   {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kerem Uysal",
+      "url": "https://keremuysal.com",
+      "image": "https://keremuysal.com/img/portre.webp",
+      "email": "info@keremuysal.com",
+      "sameAs": [
+         "https://github.com/keremuysal",
+         "https://www.linkedin.com/in/akeremuysal",
+         "https://www.instagram.com/keremuysaljpg/",
+         "https://twitter.com/keremuysaljpg",
+         "https://www.youtube.com/keremuysal",
+         "https://www.researchgate.net/profile/Alimalp-Kerem-Uysal"
+      ],
+      "jobTitle": "Biyomühendislik Öğrencisi & Gömülü Sistemler Geliştirici",
+      "worksFor": {
+         "@type": "EducationalOrganization",
+         "name": "Bursa Teknik Üniversitesi"
+      }
+   }
+   </script>
 </head>
 <body class="is-home">
    <header>
@@ -28,9 +93,7 @@
             <div class="brand-name">
                <a href="/" class="logo">Kerem Uysal</a>
             </div>
-            <div class="hamburger">
-               <i class="fas fa-bars" aria-label="Menüyü aç/kapat"></i>
-            </div>
+
             <nav class="navbar">
                <ul>
                   <li><a href="/#anasayfa" class="active">Anasayfa</a></li>
@@ -42,77 +105,95 @@
                   <li><a href="/#iletisim">İletişim</a></li>
                </ul>
             </nav>
-            <ul class="language">
-               <li><a href="/en/index.html">EN</a></li>
-               <li><a href="/" class="active2">TR</a></li>
-            </ul>
+
+            <div class="header-right">
+               <ul class="language">
+                  <li><a href="/en/index.html">EN</a></li>
+                  <li><a href="/" class="active2">TR</a></li>
+               </ul>
+               <button class="hamburger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+                  <i class="fas fa-bars"></i>
+               </button>
+            </div>
          </div>
       </div>
    </header>
+
    <main>
+      <!-- Hero Section -->
       <section class="home" id="anasayfa">
          <div class="container">
-            <div class="row full-screen">
-               <div class="home-content">
-                  <div class="block">
-                     <div id="wrapper">
-                        <div class="social1" id="div1">
-                           <a href="https://www.researchgate.net/profile/Alimalp-Kerem-Uysal" aria-label="ResearchGate profilim" target="_blank" rel="noopener noreferrer">
-                              <i class="fab fa-researchgate"></i>
-                           </a>
-                        </div>
-                        <div id="div2">
-                           <a href="https://www.researchgate.net/profile/Alimalp-Kerem-Uysal" target="_blank" rel="noopener noreferrer" class="textbox2">
-                              ResearchGate hesabım için tıklayabilirsiniz. 
-                           </a> 
-                        </div>
-                     </div>
-                  </div>
+            <div class="home-content">
+               <span class="hero-tag">Biyomühendislik & Gömülü Sistemler</span>
+               <h1 class="hero-title">Kerem Uysal</h1>
+               <h2 class="hero-subtitle">Mühendisliğin, Donanımın ve Yazılımın Kesişiminde.</h2>
+               <p class="hero-description">
+                  Bursa Teknik Üniversitesi'nde Biyomühendislik okuyor; diğer yandan gömülü sistemler, elektronik prototipleme ve modern web teknolojileri dünyasında somut projeler üretiyorum.
+               </p>
+               <div class="hero-actions">
+                  <a href="#hakkimda" class="btn btn-primary">
+                     <i class="fas fa-user"></i> Beni Tanıyın
+                  </a>
+                  <a href="https://github.com/keremuysal" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                     <i class="fab fa-github"></i> GitHub
+                  </a>
+                  <a href="https://www.researchgate.net/profile/Alimalp-Kerem-Uysal" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                     <i class="fab fa-researchgate"></i> ResearchGate
+                  </a>
                </div>
             </div>
          </div>
       </section>
+
+      <!-- Hakkımda -->
       <section class="about" id="hakkimda">
          <div class="container">
             <div class="row">
-               <div class="title">
+               <div class="title text-center">
                   <h1>Hakkımda</h1>
                   <p>Ben Kimim?</p>
                </div>
             </div>
-            <div class="row about-content">
+            <div class="about-content">
                <div class="img">
-                  <img src="/img/portre.webp" alt="Kerem Uysal Portre" loading="lazy" />
+                  <img src="/img/portre.webp" alt="Kerem Uysal Portre" width="380" height="380" loading="lazy" />
                </div>
                <div class="text">
-                  <div class="text-header">
-                     <div class="text-header-info">
-                        <h4>Hey! Ben Kerem Uysal</h4>
-                        <h5>Bursa Teknik Üniversitesinde Biyomühendislik okuyorum.</h5>
-                     </div>
+                  <h3>Hey! Ben Kerem Uysal</h3>
+                  <h4>Bursa Teknik Üniversitesi Biyomühendislik Öğrencisiyim</h4>
+                  <p>
+                     26 Temmuz 2005 tarihinde Bursa'da doğdum. 2012 yılında Bilim ve Sanat Merkezi (BİLSEM) sınavlarını kazanıp üstün yetenekli tanısıyla eğitim aldım. Bursa Erkek Lisesi'nden mezun olduktan sonra Bursa Teknik Üniversitesi Biyomühendislik bölümüne başladım.
+                  </p>
+                  <p>
+                     Biyolojinin moleküler dinamikleriyle elektroniği, gömülü sistemleri ve yazılım geliştirmeyi harmanlayarak multidisipliner çözümler üretmeye odaklanıyorum.
+                  </p>
+                  <div class="interests-tags">
+                     <span class="interest-tag">Biyomühendislik</span>
+                     <span class="interest-tag">Gömülü Sistemler</span>
+                     <span class="interest-tag">Elektronik Prototipleme</span>
+                     <span class="interest-tag">Web Geliştirme</span>
+                     <span class="interest-tag">Müzik Prodüktörlüğü</span>
+                     <span class="interest-tag">Araştırma</span>
                   </div>
-                  <p>26 Temmuz 2005 tarihinde Bursa'nın Nilüfer ilçesinde doğdum. 2012 yılında Bilim ve Sanat Merkezi sınavlarına girip üstün yetenekli tanısı aldım. Bursa Erkek Lisesi'nde Lise Öğretimini tamamladım. Bursa Teknik Üniversitesinde Biyomühendislik 1. sınıf öğrencisiyim.</p>
-                  <h4>İlgi Alanlarım:</h4>
-                  <h6>
-                     <span>Yazılım</span>, <span>Girişimcilik</span>, <span>Kripto</span>, 
-                     <span>Tasarım</span>, <span>Müzik Prodüktörlüğü</span>, <span>Araştırma</span>, 
-                     <span>İçerik Üretimi</span>, <span>Fotoğrafçılık</span> ve <span>Video Editörlüğü</span>
-                  </h6>
-                  <div class="social">
+                  <div class="social-links">
+                     <a href="https://github.com/keremuysal" aria-label="GitHub profilim" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                     <a href="https://www.linkedin.com/in/akeremuysal" aria-label="LinkedIn profilim" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                      <a href="https://twitter.com/keremuysaljpg" aria-label="Twitter hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                     <a href="https://www.linkedin.com/in/kerem-uysal-1b751519a/" aria-label="LinkedIn hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                     <a href="https://www.youtube.com/keremuysal" aria-label="Youtube Kanalım" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-                     <a href="https://www.instagram.com/keremuysal.jpg/" aria-label="Instagram Hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram-square"></i></a>
+                     <a href="https://www.instagram.com/keremuysaljpg/" aria-label="Instagram hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                     <a href="https://www.youtube.com/keremuysal" aria-label="YouTube kanalım" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
                   </div>
                </div>
             </div>
          </div>
       </section>
+
+      <!-- Eğitim -->
       <section class="services" id="egitim">
          <div class="container">
             <div class="row">
                <div class="title text-center">
                   <h1>EĞİTİM</h1>
+                  <p>Akademik Geçmişim</p>
                </div>
             </div>
             <div class="service-content">
@@ -123,133 +204,138 @@
                   <span>90 OBP Puanı</span>
                </div>
                <div class="box">
-                  <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                  <div class="icon"><i class="fas fa-university"></i></div>
                   <h5>Bursa Teknik Üniversitesi</h5>
                   <p>Biyomühendislik / 2024 - Devam Ediyor</p>
-                  <span>1. Sınıf Öğrencisi</span>
+                  <span>Lisans Eğitimi</span>
                </div>
                <div class="box">
-                  <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-                  <h5>Bilsem</h5>
-                  <p>Kırklareli, Kamil Tolon, Halil İnalcık Bilim ve Sanat Merkezi / 2012 - 2023</p>
-                  <span>Genel Yetenek alanında Proje Öğrencisi</span>
+                  <div class="icon"><i class="fas fa-brain"></i></div>
+                  <h5>BİLSEM</h5>
+                  <p>Kırklareli, Kamil Tolon, Halil İnalcık BİLSEM / 2012 - 2023</p>
+                  <span>Genel Yetenek Alanı</span>
                </div>
             </div>
          </div>
       </section>
+
+      <!-- Neler Yapıyorum? -->
       <section class="neler" id="neleryapiyorum">
          <div class="container">
             <div class="row">
                <div class="title text-center">
                   <h1>Neler Yapıyorum?</h1>
+                  <p>Projeler ve Deneyimler</p>
                </div>
             </div>
             <div class="neler-content">
                <div class="box">
-                  <div class="icon"><i class="fas fa-bookmark"></i></div>
-                  <h5>E-twinning</h5>
+                  <div class="icon"><i class="fas fa-microchip"></i></div>
+                  <h5>TÜBİTAK 2204-A</h5>
+                  <p>2019 - 2022</p>
+                  <span>3 Makale & Proje</span>
+                  <div class="button"><a href="/docs/makale.pdf" download="Lise Öğrencilerinin e-Okul Sistemini Değerlendirmeleri ve Kullanım Sıklıkları" class="btn btn-primary" style="padding: 6px 14px; font-size: 13px;">Makalemi İndir</a></div>
+               </div>
+               <div class="box">
+                  <div class="icon"><i class="fas fa-globe-europe"></i></div>
+                  <h5>eTwinning</h5>
                   <p>2021</p>
                   <span>1 Uluslararası Proje</span>
                </div>
                <div class="box">
-                  <div class="icon"><i class="fas fa-bookmark"></i></div>
-                  <h5>2204-A</h5>
-                  <p>2019-2022</p>
-                  <span>3 Makale</span>
-                  <div class="button"><a href="/docs/makale.pdf" download="Lise Öğrencilerinin e-Okul Sistemini Değerlendirmeleri ve Kullanım Sıklıkları">Makalemi İndir</a></div>
-               </div>
-               <div class="box">
-                  <div class="icon"><i class="fas fa-bookmark"></i></div>
-                  <h5>4004</h5>
-                  <p>2015-2022</p>
-                  <span>3 Tubitak Projesi</span>
+                  <div class="icon"><i class="fas fa-flask"></i></div>
+                  <h5>TÜBİTAK 4004</h5>
+                  <p>2015 - 2022</p>
+                  <span>3 Bilim Projesi</span>
                </div>
             </div>
          </div>
       </section>
+
+      <!-- Mesaj Çağrısı -->
       <section class="message">
          <div class="container">
             <div class="row">
                <div class="message-text">
-                  <h2>Gelen kutum her zaman açık. Bir sorunuz varsa, sadece merhaba demek veya beni işe almak isterseniz, size geri dönmek için elimden geleni yapacağım!</h2>
+                  <h2>Gelen kutum her zaman açık. Birlikte proje üretmek, fikir danışmak veya merhaba demek için bana dilediğiniz zaman ulaşabilirsiniz!</h2>
                </div>
                <div class="button">
-                  <a href="mailto:info.keremuysal@gmail.com">Benimle İrtibata Geçin</a>
+                  <a href="mailto:info@keremuysal.com" class="btn btn-outline" style="background: #fff; color: #01143e; font-weight: 700;">
+                     <i class="fas fa-envelope"></i> Bana E-Posta Gönderin
+                  </a>
                </div>
             </div>
          </div>
       </section>
+
+      <!-- İletişim -->
       <section class="contact" id="iletisim">
          <div class="container">
             <div class="row">
                <div class="title text-center">
-                  <h1>Benimle İrtibata Geçin!</h1>
+                  <h1>İletişim</h1>
+                  <p>Bana Ulaşın</p>
                </div>
             </div>
-            <h4 class="content-title">İletişim Bilgilerim</h4>
-            <p class="info-description">Bana her zaman ulaşabilirsiniz.</p>
-            <ul class="list-unstyled list-info">
-               <li>
-                  <div class="media">
-                     <span class="info-icon"><i class="fas fa-user-alt"></i></span>
-                     <div class="media-body info-details">
-                        <h6 class="info-type">İsim</h6><span class="info-value">Kerem Uysal</span>
-                     </div>
+            <div class="contact-grid">
+               <div class="contact-card">
+                  <div class="info-icon"><i class="fas fa-user-circle"></i></div>
+                  <div>
+                     <h6>İsim</h6>
+                     <span>Kerem Uysal</span>
                   </div>
-               </li>
-               <li>
-                  <div class="media">
-                     <span class="info-icon"><i class="fas fa-map-pin"></i></span>
-                     <div class="media-body info-details">
-                        <h6 class="info-type">Konum</h6><span class="info-value">Nilüfer/Bursa</span>
-                     </div>
+               </div>
+               <div class="contact-card">
+                  <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                  <div>
+                     <h6>Konum</h6>
+                     <span>Nilüfer / Bursa</span>
                   </div>
-               </li>
-               <li>
-                  <div class="media">
-                     <span class="info-icon"><i class="fas fa-envelope"></i></span>
-                     <div class="media-body info-details">
-                        <h6 class="info-type">Bana mail at!</h6>
-                        <span class="info-value"><a href="mailto:info.keremuysal@gmail.com">info.keremuysal@gmail.com</a></span>
-                     </div>
+               </div>
+               <div class="contact-card">
+                  <div class="info-icon"><i class="fas fa-envelope-open-text"></i></div>
+                  <div>
+                     <h6>E-Posta</h6>
+                     <span><a href="mailto:info@keremuysal.com">info@keremuysal.com</a></span>
                   </div>
-               </li>
-            </ul>
+               </div>
+            </div>
          </div>
       </section>
    </main>
+
    <footer>
       <div class="container">
          <div class="footer-logo">Kerem Uysal</div>
          <div class="social">
-            <a href="https://twitter.com/keremuysaljpg" aria-label="Twitter hesabım"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/kerem-uysal-1b751519a/" aria-label="LinkedIn hesabım"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.youtube.com/keremuysal" aria-label="Youtube Kanalım"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.instagram.com/keremuysal.jpg/" aria-label="Instagram hesabım"><i class="fab fa-instagram-square"></i></a>
+            <a href="https://github.com/keremuysal" aria-label="GitHub hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/akeremuysal" aria-label="LinkedIn hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/keremuysaljpg" aria-label="Twitter hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/keremuysaljpg/" aria-label="Instagram hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/keremuysal" aria-label="YouTube kanalım" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
          </div>
          <div class="footer-links">
             <a href="/updates.html">Site Güncellemeleri</a>
             <a href="/sitemap.xml">Site Haritası</a>
             <a href="/robots.txt">Robots.txt</a>
          </div>
-         <div class="hits-counter" style="margin-top: 20px;">
-            <a href="https://hits.sh/keremuysal.com/"><img alt="Hits" src="https://hits.sh/keremuysal.com.svg"/></a>
+         <div class="copyright">
+            <div class="renewable-container">
+               <img src="/img/100.webp" alt="Yenilenebilir Enerji" width="28" height="28" loading="lazy">
+               <span class="renewable-energy">Bu sitede %100 yenilenebilir enerji kullanılmaktadır.</span>
+            </div>
+            <p>© <span id="year">2026</span> | Kerem Uysal. Tüm hakları saklıdır. (v3.0)</p>
          </div>
       </div>
    </footer>
-   <section class="copyright">
-      <div class="container">
-         <div class="renewable-container">
-            <img src="/img/100.webp" alt="Bu sitede %100 yenilenebilir enerji kullanılmıştır." loading="lazy">
-            <p class="renewable-energy">Bu sitede %100 yenilenebilir enerji kullanılmıştır.</p>
-         </div>
-         <p>© <span id="year">2025</span> | Developed By Kerem Uysal. | All rights reserved.</p>
-      </div>
-   </section>
-   <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+
+   <!-- Tema Değiştirici Buton -->
+   <button id="theme-toggle" class="theme-toggle" aria-label="Temayı değiştir" title="Temayı değiştir">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
    </button>
+
+   <!-- Main Script -->
    <script src="/js/app.js" defer></script>
 </body>
 </html>

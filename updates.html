@@ -1,6 +1,7 @@
 <!--
 * Author:    Kerem Uysal
-* Rebuilt:   2025
+* Created:   01.08.2022
+* Version:   3.0 (2026 Overhaul)
 * 𝓚𝓮𝓻𝓮𝓶 𝓤𝔂𝓼𝓪𝓵
 -->
 <!DOCTYPE html>
@@ -8,17 +9,47 @@
 <head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta name="keywords" content="HTML, CSS, JavaScript, Kerem Uysal, Güncellemeler, Site yenilikleri">
-   <meta name="description" content="Kerem Uysal'ın kişisel web sitesindeki güncellemeler ve yenilikler.">
+   <meta name="keywords" content="Kerem Uysal, Güncellemeler, Changelog, Sürüm Notları, Web Sitesi">
+   <meta name="description" content="Kerem Uysal'ın kişisel web sitesindeki güncellemeler, sürüm geçmişi ve yenilikler.">
    <meta name="author" content="Kerem Uysal">
    <title>Site Güncellemeleri | Kerem Uysal</title>
+
    <link rel="canonical" href="https://keremuysal.com/updates.html" />
    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/updates.html" />
    <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/updates.html" />
    <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/updates.html" />
+
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://keremuysal.com/updates.html" />
+   <meta property="og:title" content="Site Güncellemeleri | Kerem Uysal" />
+   <meta property="og:description" content="Kerem Uysal'ın kişisel web sitesindeki güncellemeler, sürüm geçmişi ve yenilikler." />
+   <meta property="og:image" content="https://keremuysal.com/img/portre.webp" />
+
+   <meta property="twitter:card" content="summary_large_image" />
+   <meta property="twitter:url" content="https://keremuysal.com/updates.html" />
+   <meta property="twitter:title" content="Site Güncellemeleri | Kerem Uysal" />
+   <meta property="twitter:description" content="Kerem Uysal'ın kişisel web sitesindeki güncellemeler, sürüm geçmişi ve yenilikler." />
+   <meta property="twitter:image" content="https://keremuysal.com/img/portre.webp" />
+
+   <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
    <link rel="stylesheet" href="/css/style.css" />
-   <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
+
+   <!-- FOUC Prevention Script -->
+   <script>
+      (function() {
+         const savedTheme = localStorage.getItem('theme');
+         const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+         if (savedTheme === 'dark' || (!savedTheme && sysDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+         } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+         }
+      })();
+   </script>
 </head>
 <body>
    <header>
@@ -27,9 +58,7 @@
             <div class="brand-name">
                <a href="/" class="logo">Kerem Uysal</a>
             </div>
-            <div class="hamburger">
-               <i class="fas fa-bars" aria-label="Menüyü aç/kapat"></i>
-            </div>
+
             <nav class="navbar">
                <ul>
                   <li><a href="/">Anasayfa</a></li>
@@ -38,62 +67,96 @@
                   <li><a href="/updates.html" class="active">Güncellemeler</a></li>
                </ul>
             </nav>
-            <ul class="language">
-               <li><a href="/en/updates.html">EN</a></li>
-               <li><a href="/updates.html" class="active2">TR</a></li>
-           </ul>
+
+            <div class="header-right">
+               <ul class="language">
+                  <li><a href="/en/updates.html">EN</a></li>
+                  <li><a href="/updates.html" class="active2">TR</a></li>
+               </ul>
+               <button class="hamburger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+                  <i class="fas fa-bars"></i>
+               </button>
+            </div>
          </div>
       </div>
    </header>
+
    <main>
       <section class="updates-section">
          <div class="container">
-            <div>
-               <div>
-                  <div>
-                     <h2>Site Güncellemeleri</h2>
-                     <br>
-                     <ul class="updates-list">
-                        <li class="asd">16 Ağu 2025</li>
-                        <li class="asd2">Bazı hatalar ve mobil uyumluluk sorunları düzeltildi, ve artık bu sitede %100 yenilenebilir enerji kullanılıyor.</li>
-                        <br>
-                        <li class="asd">07 Ağu 2025</li>
-                        <li class="asd2">Bazı hatalar ve mobil uyumluluk sorunları düzeltildi</li>
-                        <br>
-                        <li class="asd">03 Ağu 2025</li>
-                        <li class="asd2">Sitenin tüm altyapısı modern web standartlarına (performans, SEO, erişilebilirlik) uygun olarak sıfırdan yeniden yazıldı. Bu büyük güncellemeyle birlikte karanlık mod, ziyaretçi sayacı gibi yeni özellikler eklendi, sunucu kaynaklı ikon gösterme sorunları giderildi ve tüm site yapısı daha tutarlı hale getirildi.</li>
-                        <br>
-                        <li class="asd">13 Kas 2022 12:42</li>
-                        <li class="asd2">Bazı hata düzeltmeleri ve iyileştirmeler.</li>
-                        <br>
-                        <li class="asd">26 Eki 2022 22:51</li>
-                        <li class="asd2">Bazı hata düzeltmeleri, iyileştirmeler ve site güncellemeleri sayfası eklendi.</li>
-                        <br>
-                        <li class="asd">23 Eki 2022 13:37</li>
-                        <li class="asd2">Müzik sayfası eklendi</li>
-                        <br>
-                        <li class="asd">25 Eyl 2022 10:41</li>
-                        <li class="asd2">Blog sayfası eklendi.</li>
-                     </ul>
-                  </div>
-               </div>
+            <div class="title text-center">
+               <h1>Site Güncellemeleri</h1>
+               <p>Sürüm Geçmişi ve Değişiklikler</p>
             </div>
+
+            <ul class="updates-list">
+               <li class="update-badge">11 Eki 2026 — Sürüm 3.0 (Büyük Sistem & Tasarım Yenilemesi)</li>
+               <li class="update-desc">
+                  • Sitenin tüm altyapısı, stil ve etkileşim mimarisi modern web standartlarına uygun olarak v3.0 sürümüne yükseltildi.<br>
+                  • Açık temadaki (Light Mode) menü kontrast sorunu çözüldü; alt sayfalarda üst navigasyon net ve okunabilir hale getirildi.<br>
+                  • Mobil ve tablet ekranlarda dil seçici (TR / EN) menü akışına dahil edildi; laptop ekranlarındaki eleman çarpışması Flexbox ile giderildi.<br>
+                  • Müzik sayfasındaki popup modal sistemi sıfırdan yazılarak kapatma esnasında sayfanın en üstüne fırlatma hatası düzeltildi.<br>
+                  • Sosyal medya paylaşımları için anasayfa ve tüm sayfalara Open Graph (OG) ve Twitter Card meta etiketleri eklendi.<br>
+                  • Google Bilgi Grafiği entegrasyonu için Schema.org JSON-LD yapısal verisi entegre edildi.<br>
+                  • Sayfa geçişlerindeki beyaz parlama (FOUC) engellendi; resimlere boyut tanımlanarak düzen kaymaları (CLS) sıfırlandı.<br>
+                  • E-posta adresi info@keremuysal.com olarak güncellendi ve sosyal medya bağlantıları standartlaştırıldı.
+               </li>
+
+               <li class="update-badge">16 Ağu 2025</li>
+               <li class="update-desc">Bazı hatalar ve mobil uyumluluk sorunları düzeltildi, ve artık bu sitede %100 yenilenebilir enerji kullanılıyor.</li>
+
+               <li class="update-badge">07 Ağu 2025</li>
+               <li class="update-desc">Bazı hatalar ve mobil uyumluluk sorunları düzeltildi.</li>
+
+               <li class="update-badge">03 Ağu 2025 — Sürüm 2.0 (Rebuilt)</li>
+               <li class="update-desc">Sitenin tüm altyapısı modern web standartlarına (performans, SEO, erişilebilirlik) uygun olarak sıfırdan yeniden yazıldı. Karanlık mod eklendi ve tutarlı tasarım dili oluşturuldu.</li>
+
+               <li class="update-badge">13 Kas 2022</li>
+               <li class="update-desc">Bazı hata düzeltmeleri ve iyileştirmeler yapıldı.</li>
+
+               <li class="update-badge">26 Eki 2022</li>
+               <li class="update-desc">Site güncellemeleri sayfası eklendi.</li>
+
+               <li class="update-badge">23 Eki 2022</li>
+               <li class="update-desc">Müzik sayfası portfolyoya eklendi.</li>
+
+               <li class="update-badge">25 Eyl 2022</li>
+               <li class="update-desc">Blog sayfası yayına alındı.</li>
+            </ul>
          </div>
       </section>
-    </main>
-   <section class="copyright">
+   </main>
+
+   <footer>
       <div class="container">
-         <div class="renewable-container">
-            <img src="/img/100.webp" alt="Bu sitede %100 yenilenebilir enerji kullanılmıştır." loading="lazy">
-            <p class="renewable-energy">Bu sitede %100 yenilenebilir enerji kullanılmıştır.</p>
+         <div class="footer-logo">Kerem Uysal</div>
+         <div class="social">
+            <a href="https://github.com/keremuysal" aria-label="GitHub hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/akeremuysal" aria-label="LinkedIn hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/keremuysaljpg" aria-label="Twitter hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/keremuysaljpg/" aria-label="Instagram hesabım" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/keremuysal" aria-label="YouTube kanalım" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
          </div>
-         <p>© <span id="year">2025</span> | Developed By Kerem Uysal. | All rights reserved.</p>
+         <div class="footer-links">
+            <a href="/updates.html">Site Güncellemeleri</a>
+            <a href="/sitemap.xml">Site Haritası</a>
+            <a href="/robots.txt">Robots.txt</a>
+         </div>
+         <div class="copyright">
+            <div class="renewable-container">
+               <img src="/img/100.webp" alt="Yenilenebilir Enerji" width="28" height="28" loading="lazy">
+               <span class="renewable-energy">Bu sitede %100 yenilenebilir enerji kullanılmaktadır.</span>
+            </div>
+            <p>© <span id="year">2026</span> | Kerem Uysal. Tüm hakları saklıdır. (v3.0)</p>
+         </div>
       </div>
-   </section>
-   <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+   </footer>
+
+   <button id="theme-toggle" class="theme-toggle" aria-label="Temayı değiştir" title="Temayı değiştir">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
    </button>
+
    <script src="/js/app.js" defer></script>
 </body>
 </html>

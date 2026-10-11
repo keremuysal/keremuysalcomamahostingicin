@@ -1,6 +1,7 @@
 <!--
 * Author:    Kerem Uysal
-* Rebuilt:   2025
+* Created:   01.08.2022
+* Version:   3.0 (2026 Overhaul)
 * 𝓚𝓮𝓻𝓮𝓶 𝓤𝔂𝓼𝓪𝓵
 -->
 <!DOCTYPE html>
@@ -8,16 +9,47 @@
 <head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta name="keywords" content="HTML, CSS, JavaScript, Kerem Uysal, Updates, Site changelog">
-   <meta name="description" content="Updates and changelog for Kerem Uysal's personal website.">
+   <meta name="keywords" content="Kerem Uysal, Updates, Changelog, Release Notes, Website">
+   <meta name="description" content="Changelog, version history, and updates for Kerem Uysal's personal website.">
    <meta name="author" content="Kerem Uysal">
    <title>Site Updates | Kerem Uysal</title>
+
    <link rel="canonical" href="https://keremuysal.com/en/updates.html" />
    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/updates.html" />
    <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/updates.html" />
    <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/updates.html" />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />    <link rel="stylesheet" href="/css/style.css" />
+
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://keremuysal.com/en/updates.html" />
+   <meta property="og:title" content="Site Updates | Kerem Uysal" />
+   <meta property="og:description" content="Changelog, version history, and updates for Kerem Uysal's personal website." />
+   <meta property="og:image" content="https://keremuysal.com/img/portre.webp" />
+
+   <meta property="twitter:card" content="summary_large_image" />
+   <meta property="twitter:url" content="https://keremuysal.com/en/updates.html" />
+   <meta property="twitter:title" content="Site Updates | Kerem Uysal" />
+   <meta property="twitter:description" content="Changelog, version history, and updates for Kerem Uysal's personal website." />
+   <meta property="twitter:image" content="https://keremuysal.com/img/portre.webp" />
+
    <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+   <link rel="stylesheet" href="/css/style.css" />
+
+   <!-- FOUC Prevention Script -->
+   <script>
+      (function() {
+         const savedTheme = localStorage.getItem('theme');
+         const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+         if (savedTheme === 'dark' || (!savedTheme && sysDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+         } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+         }
+      })();
+   </script>
 </head>
 <body>
    <header>
@@ -26,9 +58,7 @@
             <div class="brand-name">
                <a href="/en/index.html" class="logo">Kerem Uysal</a>
             </div>
-            <div class="hamburger">
-               <i class="fas fa-bars" aria-label="Toggle menu"></i>
-            </div>
+
             <nav class="navbar">
                <ul>
                   <li><a href="/en/index.html">Home</a></li>
@@ -37,62 +67,95 @@
                   <li><a href="/en/updates.html" class="active">Updates</a></li>
                </ul>
             </nav>
-            <ul class="language">
-               <li><a href="/en/updates.html" class="active2">EN</a></li>
-               <li><a href="/updates.html">TR</a></li>
-           </ul>
+
+            <div class="header-right">
+               <ul class="language">
+                  <li><a href="/en/updates.html" class="active2">EN</a></li>
+                  <li><a href="/updates.html">TR</a></li>
+               </ul>
+               <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                  <i class="fas fa-bars"></i>
+               </button>
+            </div>
          </div>
       </div>
    </header>
+
    <main>
       <section class="updates-section">
          <div class="container">
-            <div>
-               <div>
-                  <div>
-                     <h2>Site Updates</h2>
-                     <br>
-                     <ul class="updates-list">
-                        <li class="asd">August 16, 2025</li>
-                        <li class="asd2">Some bugs and mobile compatibility issues have been fixed, and this site now runs on 100% renewable energy.</li>
-                        <br>
-                        <li class="asd">August 07, 2025</li>
-                        <li class="asd2">Fixed some bugs and mobile compatibility issues</li>
-                        <br>
-                        <li class="asd">August 03, 2025</li>
-                        <li class="asd2">Complete site overhaul. The entire codebase was rewritten from scratch to align with modern web standards for performance, SEO, and accessibility. This major update introduces new features like dark mode and a visitor counter, fixes critical bugs such as server-side icon rendering, and standardizes the overall site structure.</li>
-                        <br>
-                        <li class="asd">Nov 13, 2022 12:42 PM</li>
-                        <li class="asd2">Some bug fixes and improvements.</li>
-                        <br>
-                        <li class="asd">Oct 26, 2022 10:51 PM</li>
-                        <li class="asd2">Added site updates page, along with some bug fixes and improvements.</li>
-                        <br>
-                        <li class="asd">Oct 23, 2022 01:37 PM</li>
-                        <li class="asd2">Music page added.</li>
-                        <br>
-                        <li class="asd">Sep 25, 2022 10:41 AM</li>
-                        <li class="asd2">Blog page added.</li>
-                     </ul>
-                  </div>
-               </div>
+            <div class="title text-center">
+               <h1>Site Updates</h1>
+               <p>Changelog & Version History</p>
             </div>
+
+            <ul class="updates-list">
+               <li class="update-badge">Oct 11, 2026 — Version 3.0 (Major System & UI Overhaul)</li>
+               <li class="update-desc">
+                  • Fully upgraded site infrastructure and stylesheets to v3.0 standards.<br>
+                  • Fixed light-mode navigation contrast across all subpages for optimal legibility.<br>
+                  • Integrated accessible mobile language toggle and resolved tablet/desktop responsive layout conflicts.<br>
+                  • Re-architected modal popup system in Music portfolio to eliminate scroll-jumping glitches.<br>
+                  • Enriched all pages with Open Graph (OG) and Twitter Card tags for enhanced social sharing previews.<br>
+                  • Implemented Schema.org JSON-LD structured data for Google Knowledge Graph integration.<br>
+                  • Eradicated flash of unstyled content (FOUC), added image aspect dimensions to eliminate CLS, and unified social/contact handles.
+               </li>
+
+               <li class="update-badge">August 16, 2025</li>
+               <li class="update-desc">Fixed mobile compatibility issues and ensured 100% renewable energy operation.</li>
+
+               <li class="update-badge">August 07, 2025</li>
+               <li class="update-desc">Fixed several bug fixes and mobile layout improvements.</li>
+
+               <li class="update-badge">August 03, 2025 — Version 2.0 (Rebuilt)</li>
+               <li class="update-desc">Rebuilt codebase from scratch focusing on modern web standards, performance, SEO, accessibility, and dark mode.</li>
+
+               <li class="update-badge">Nov 13, 2022</li>
+               <li class="update-desc">Minor bug fixes and stability improvements.</li>
+
+               <li class="update-badge">Oct 26, 2022</li>
+               <li class="update-desc">Added site updates changelog page.</li>
+
+               <li class="update-badge">Oct 23, 2022</li>
+               <li class="update-desc">Launched music discography section.</li>
+
+               <li class="update-badge">Sep 25, 2022</li>
+               <li class="update-desc">Initial blog launch.</li>
+            </ul>
          </div>
       </section>
-    </main>
-    <section class="copyright">
+   </main>
+
+   <footer>
       <div class="container">
-         <div class="renewable-container">
-            <img src="/img/100.webp" alt="This site is powered by 100% renewable energy." loading="lazy">
-            <p class="renewable-energy">This site is powered by 100% renewable energy.</p>
+         <div class="footer-logo">Kerem Uysal</div>
+         <div class="social">
+            <a href="https://github.com/keremuysal" aria-label="My GitHub Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/akeremuysal" aria-label="My LinkedIn Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/keremuysaljpg" aria-label="My Twitter Account" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/keremuysaljpg/" aria-label="My Instagram Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/keremuysal" aria-label="My YouTube Channel" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
          </div>
-         <p>© <span id="year">2025</span> | Developed By Kerem Uysal. | All rights reserved.</p>
+         <div class="footer-links">
+            <a href="/en/updates.html">Site Updates</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="/robots.txt">Robots.txt</a>
+         </div>
+         <div class="copyright">
+            <div class="renewable-container">
+               <img src="/img/100.webp" alt="Renewable Energy" width="28" height="28" loading="lazy">
+               <span class="renewable-energy">This site is powered by 100% renewable energy.</span>
+            </div>
+            <p>© <span id="year">2026</span> | Kerem Uysal. All rights reserved. (v3.0)</p>
+         </div>
       </div>
-   </section>
+   </footer>
+
    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
    </button>
+
    <script src="/js/app.js" defer></script>
 </body>
 </html>

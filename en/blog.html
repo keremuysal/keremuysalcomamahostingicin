@@ -1,7 +1,7 @@
 <!--
 * Author:    Kerem Uysal
 * Created:   01.08.2022
-* Rebuilt:   2025
+* Version:   3.0 (2026 Overhaul)
 * 𝓚𝓮𝓻𝓮𝓶 𝓤𝔂𝓼𝓪𝓵
 -->
 <!DOCTYPE html>
@@ -9,16 +9,47 @@
 <head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta name="keywords" content="HTML, CSS, JavaScript, Kerem Uysal, Kerem, Uysal, Blog">
-   <meta name="description" content="Kerem Uysal's Blog Page">
+   <meta name="keywords" content="Kerem Uysal, Blog, Bioengineering, Technology, Artificial Intelligence, Transistors, Embedded Systems">
+   <meta name="description" content="Personal blog of Kerem Uysal sharing thoughts and deep dives into technology, bioengineering, and software.">
+   <meta name="author" content="Kerem Uysal">
    <title>Kerem Uysal | Blog</title>
+
    <link rel="canonical" href="https://keremuysal.com/en/blog.html" />
    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/blog.html" />
    <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/blog.html" />
    <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/blog.html" />
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /> 
-   <link rel="stylesheet" href="/css/style.css" />
+
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://keremuysal.com/en/blog.html" />
+   <meta property="og:title" content="Kerem Uysal | Blog" />
+   <meta property="og:description" content="Personal blog of Kerem Uysal sharing thoughts and deep dives into technology, bioengineering, and software." />
+   <meta property="og:image" content="https://keremuysal.com/img/portre.webp" />
+
+   <meta property="twitter:card" content="summary_large_image" />
+   <meta property="twitter:url" content="https://keremuysal.com/en/blog.html" />
+   <meta property="twitter:title" content="Kerem Uysal | Blog" />
+   <meta property="twitter:description" content="Personal blog of Kerem Uysal sharing thoughts and deep dives into technology, bioengineering, and software." />
+   <meta property="twitter:image" content="https://keremuysal.com/img/portre.webp" />
+
    <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+   <link rel="stylesheet" href="/css/style.css" />
+
+   <!-- FOUC Prevention Script -->
+   <script>
+      (function() {
+         const savedTheme = localStorage.getItem('theme');
+         const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+         if (savedTheme === 'dark' || (!savedTheme && sysDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+         } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+         }
+      })();
+   </script>
 </head>
 <body>
    <header>
@@ -27,62 +58,81 @@
             <div class="brand-name">
                <a href="/en/index.html" class="logo">Kerem Uysal</a>
             </div>
-            <div class="hamburger">
-               <i class="fas fa-bars" aria-label="Toggle menu"></i>
-            </div>
+
             <nav class="navbar">
                <ul>
                   <li><a href="/en/index.html">Home</a></li>
                   <li><a href="/en/muzik.html">Music Portfolio</a></li>
                   <li><a href="/en/blog.html" class="active">Blog</a></li>
+                  <li><a href="/en/updates.html">Updates</a></li>
                </ul>
             </nav>
-            <ul class="language">
-               <li><a href="/en/blog.html" class="active2">EN</a></li>
-               <li><a href="/blog.html">TR</a></li>
-            </ul>
+
+            <div class="header-right">
+               <ul class="language">
+                  <li><a href="/en/blog.html" class="active2">EN</a></li>
+                  <li><a href="/blog.html">TR</a></li>
+               </ul>
+               <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                  <i class="fas fa-bars"></i>
+               </button>
+            </div>
          </div>
       </div>
    </header>
+
    <main>
       <section class="services blog">
          <div class="container blog-home-content">
-             <div class="row">
+            <div class="row">
                <div class="title text-center">
                   <h1>BLOG</h1>
                   <p>My Posts and Thoughts</p>
                </div>
             </div>
-            <div class="block">
+            <div class="block" style="max-width: 820px; margin: 0 auto;">
                <article>
-                  <h2><span>The Digital Universe's Cornerstone: Transistor Wars, the Rise of Artificial Intelligence, and the Future of Technology</span></h2>
-                  <h6><span>In this article, we examine the evolution of transistors, the limits of Moore's Law, and how artificial intelligence is fueling the race among tech giants.</span></h6>
-                  <br>
-                  <h9><a href="https://keremuysal.com/en/technology_transistors_and_future_vision.html">Click to go to the blog.</a></h9>
-               </article>
-               <article>
-                  <h2><span>Hello World! (2)</span></h2>
-                  <h6><span>I'm just testing to see if the blog is working...</span></h6>
-                  <br>
-                  <h9><a href="/en/merhabadunya2.html">Click to go to the blog.</a></h9>
+                  <h2>The Digital Universe's Cornerstone: Transistor Wars, the Rise of AI, and the Future of Technology</h2>
+                  <p>In this article, we examine the evolution of transistors, the physical boundaries of Moore's Law, and how generative AI is driving the semiconductor race among tech titans.</p>
+                  <a href="/en/technology_transistors_and_future_vision.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 14px;">
+                     Read Article <i class="fas fa-arrow-right"></i>
+                  </a>
                </article>
             </div>
          </div>
       </section>
    </main>
-   <section class="copyright">
+
+   <footer>
       <div class="container">
-         <div class="renewable-container">
-            <img src="/img/100.webp" alt="This site is powered by 100% renewable energy." loading="lazy">
-            <p class="renewable-energy">This site is powered by 100% renewable energy.</p>
+         <div class="footer-logo">Kerem Uysal</div>
+         <div class="social">
+            <a href="https://github.com/keremuysal" aria-label="My GitHub Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/akeremuysal" aria-label="My LinkedIn Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/keremuysaljpg" aria-label="My Twitter Account" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/keremuysaljpg/" aria-label="My Instagram Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/keremuysal" aria-label="My YouTube Channel" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
          </div>
-         <p>© <span id="year">2025</span> | Developed By Kerem Uysal. | All rights reserved.</p>
+         <div class="footer-links">
+            <a href="/en/updates.html">Site Updates</a>
+            <a href="/sitemap.xml">Sitemap</a>
+            <a href="/robots.txt">Robots.txt</a>
+         </div>
+         <div class="copyright">
+            <div class="renewable-container">
+               <img src="/img/100.webp" alt="Renewable Energy" width="28" height="28" loading="lazy">
+               <span class="renewable-energy">This site is powered by 100% renewable energy.</span>
+            </div>
+            <p>© <span id="year">2026</span> | Kerem Uysal. All rights reserved. (v3.0)</p>
+         </div>
       </div>
-   </section>
+   </footer>
+
    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
       <i class="fas fa-moon"></i>
       <i class="fas fa-sun"></i>
    </button>
+
    <script src="/js/app.js" defer></script>
 </body>
 </html>
