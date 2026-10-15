@@ -6,6 +6,16 @@
     <meta name="description" content="404 - Sayfa Bulunamadı | Kerem Uysal" />
     <meta name="author" content="Kerem Uysal" />
     <title>404 - Sayfa Bulunamadı | Kerem Uysal</title>
+    <script>
+        (function() {
+            var path = window.location.pathname;
+            // Eski büyük harfli /EN yollarını küçük harfli /en yollarına anında yönlendir
+            if (/^\/EN(\/.*)?$/i.test(path) && !path.startsWith('/en')) {
+                var target = path.replace(/^\/EN/i, '/en');
+                window.location.replace(target + window.location.search + window.location.hash);
+            }
+        })();
+    </script>
     <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
