@@ -594,6 +594,13 @@
             });
          }
 
+         function fmtPrice(val) {
+            if (val === null || val === undefined || Number.isNaN(Number(val))) return "--";
+            const abs = Math.abs(Number(val));
+            const digits = abs < 0.1 ? 5 : (abs < 2 ? 4 : (abs < 50 ? 3 : 2));
+            return "$" + fmtNum(val, digits);
+         }
+
          function fmtSignedUsdt(val, digits = 4) {
             if (val === null || val === undefined || Number.isNaN(Number(val))) return "--";
             const n = Number(val);
@@ -682,11 +689,11 @@
                const rows = [
                   ["Kontrat", fmtNum(p.contracts, 4)],
                   ["Pozisyon Büyüklüğü", fmtNum(p.notional_usdt, 2) + " USDT"],
-                  ["Giriş Fiyatı", "$" + fmtNum(p.entry_price, 2)],
-                  ["Anlık Mark Fiyatı", "$" + fmtNum(p.mark_price, 2)],
-                  ["Likidasyon Fiyatı", "$" + fmtNum(p.liquidation_price, 2)],
+                  ["Giriş Fiyatı", fmtPrice(p.entry_price)],
+                  ["Anlık Mark Fiyatı", fmtPrice(p.mark_price)],
+                  ["Likidasyon Fiyatı", fmtPrice(p.liquidation_price)],
                   ["Anlık Kâr / Zarar", fmtSignedUsdt(p.unrealized_pnl, 4) + " (" + fmtNum(p.roe_pct, 2) + "%)"],
-                  ["Borsa STOP_MARKET", p.stop_loss ? "$" + fmtNum(p.stop_loss.trigger_price, 2) + " (" + p.stop_loss.working_type + ")" : "Bekleniyor"]
+                  ["Borsa STOP_MARKET", p.stop_loss ? fmtPrice(p.stop_loss.trigger_price) + " (" + p.stop_loss.working_type + ")" : "Bekleniyor"]
                ];
                rows.forEach(([k, v], idx) => {
                   const item = el("div", "kv-item");
@@ -711,26 +718,38 @@
          function renderBots(bots) {
             const wrap = document.getElementById("bots-container");
             wrap.replaceChildren();
-            ["1h", "4h"].forEach(tf => {
-               const b = bots && bots[tf];
+            if (!bots) return;
+            const preferred = ["1h", "4h", "1m_sol", "1m_xrp", "5m_doge"];
+            const keys = preferred.filter(k => bots[k]).concat(
+               Object.keys(bots).filter(k => !preferred.includes(k))
+            );
+            keys.forEach(key => {
+               const b = bots[key];
                if (!b) return;
+               const tf = (b.timeframe || key).toUpperCase();
                const card = el("div", "dash-card");
                const header = el("div", "bot-card-header");
-               header.appendChild(el("span", "bot-title", tf.toUpperCase() + " Bot · " + b.symbol));
+               const titleText = tf + " · " + b.symbol + (b.role === "TESTNET_FAST" ? " (Hızlı Testnet)" : "");
+               header.appendChild(el("span", "bot-title", titleText));
                const sig = b.signal || "HOLD";
                const sigCls = sig === "LONG" ? "badge-up" : (sig === "SHORT" ? "badge-down" : "badge-neutral");
                header.appendChild(el("span", "badge " + sigCls, "Sinyal: " + sig));
                card.appendChild(header);
 
+               const ap = b.local_active_position;
+               const posLabel = ap
+                  ? ap.side + " @ " + fmtPrice(ap.entry_price) + " (SL: " + fmtPrice(ap.sl_price) + ")"
+                  : "Yok (Geçiş bekleniyor)";
+
                const kv = el("div", "kv-list");
                const pairs = [
-                  ["Canlı Piyasa Fiyatı", b.live_price != null ? "$" + fmtNum(b.live_price, 2) : "--"],
-                  ["Kapanmış Mum Fiyatı", b.closed_bar_price != null ? "$" + fmtNum(b.closed_bar_price, 2) : "--"],
+                  ["Canlı Piyasa Fiyatı", b.live_price != null ? fmtPrice(b.live_price) : "--"],
+                  ["Kapanmış Mum Fiyatı", b.closed_bar_price != null ? fmtPrice(b.closed_bar_price) : "--"],
                   ["Supertrend Durumu", null, trendBadge(b.st_trend)],
                   ["Matrix Trend Ribbon", null, trendBadge(b.mtr_trend)],
-                  ["Supertrend (Üst / Alt)", "$" + fmtNum(b.st_dn, 2) + " / $" + fmtNum(b.st_up, 2)],
-                  ["Matrix Bandı (H / L)", "$" + fmtNum(b.mtr_h, 2) + " / $" + fmtNum(b.mtr_l, 2)],
-                  ["Son İşlenen Mum", fmtTime(b.closed_timestamp)],
+                  ["Supertrend (Üst / Alt)", fmtPrice(b.st_dn) + " / " + fmtPrice(b.st_up)],
+                  ["Matrix Bandı (H / L)", fmtPrice(b.mtr_h) + " / " + fmtPrice(b.mtr_l)],
+                  ["Bot Pozisyonu", posLabel],
                   ["Son Kontrol (Bot)", fmtTime(b.updated_at_utc)]
                ];
                pairs.forEach(([k, v, node]) => {
@@ -764,7 +783,7 @@
                sideTd.appendChild(el("span", "badge " + (t.side === "BUY" ? "badge-up" : "badge-down"), t.side));
                tr.appendChild(sideTd);
                tr.appendChild(el("td", null, fmtNum(t.amount, 4)));
-               tr.appendChild(el("td", null, "$" + fmtNum(t.price, 2)));
+               tr.appendChild(el("td", null, fmtPrice(t.price)));
                tr.appendChild(el("td", null, fmtNum(t.cost_usdt, 2) + " USDT"));
                tr.appendChild(el("td", null, fmtNum(t.fee, 4) + " " + (t.fee_asset || "USDT")));
                const pnlTd = el("td", null, fmtSignedUsdt(t.realized_pnl, 4));
