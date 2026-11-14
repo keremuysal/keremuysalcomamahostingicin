@@ -1,0 +1,865 @@
+<!--
+* Author:    Kerem Uysal
+* Created:   14.11.2026
+* Version:   3.0
+* 𝓚𝓮𝓻𝓮𝓶 𝓤𝔂𝓼𝓪𝓵
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="keywords" content="Kerem Uysal, Oracle Server Status, MoneyBot, Trading Bot, Binance Futures, Supertrend, Matrix Trend Ribbon">
+   <meta name="description" content="Live Oracle Cloud server telemetry and 24/7 MoneyBot Binance Futures (Supertrend + Matrix Trend Ribbon) trading dashboard.">
+   <meta name="author" content="Kerem Uysal">
+   <title>Kerem Uysal | System &amp; Trading Bot Status</title>
+
+   <link rel="canonical" href="https://keremuysal.com/en/status.html" />
+   <link rel="alternate" hreflang="tr" href="https://keremuysal.com/status.html" />
+   <link rel="alternate" hreflang="en" href="https://keremuysal.com/en/status.html" />
+   <link rel="alternate" hreflang="x-default" href="https://keremuysal.com/status.html" />
+
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://keremuysal.com/en/status.html" />
+   <meta property="og:title" content="Kerem Uysal | System &amp; Trading Bot Status" />
+   <meta property="og:description" content="Live Oracle Cloud server metrics and 24/7 MoneyBot Binance Futures positions and PnL monitor." />
+   <meta property="og:image" content="https://keremuysal.com/img/portre.webp" />
+
+   <link type="image/x-icon" rel="shortcut icon" href="/img/galaktik.webp" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+   <link rel="stylesheet" href="/css/style.css" />
+
+   <script>
+      (function() {
+         const savedTheme = localStorage.getItem('theme');
+         const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+         if (savedTheme === 'dark' || (!savedTheme && sysDark)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+         } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+         }
+      })();
+   </script>
+
+   <style>
+      .status-section {
+         padding: 110px 0 80px;
+         min-height: 82vh;
+      }
+      .status-toolbar {
+         display: flex;
+         flex-wrap: wrap;
+         align-items: center;
+         justify-content: space-between;
+         gap: 12px;
+         margin: 24px 0 28px;
+         padding: 14px 18px;
+         background: var(--card-bg, #ffffff);
+         border: 1px solid var(--border-light, rgba(128, 128, 128, 0.2));
+         border-radius: 12px;
+         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      }
+      .status-pill-group {
+         display: flex;
+         flex-wrap: wrap;
+         align-items: center;
+         gap: 10px;
+      }
+      .status-pill {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         padding: 6px 12px;
+         border-radius: 999px;
+         font-size: 0.82rem;
+         font-weight: 600;
+         border: 1px solid var(--border-light, rgba(128, 128, 128, 0.2));
+         background: rgba(250, 91, 15, 0.08);
+         color: var(--text-dark, #111827);
+      }
+      .status-pill.ok {
+         background: rgba(16, 185, 129, 0.14);
+         color: #059669;
+         border-color: rgba(16, 185, 129, 0.35);
+      }
+      [data-theme="dark"] .status-pill.ok {
+         color: #34d399;
+      }
+      .status-pill.err {
+         background: rgba(239, 68, 68, 0.14);
+         color: #dc2626;
+         border-color: rgba(239, 68, 68, 0.35);
+      }
+      [data-theme="dark"] .status-pill.err {
+         color: #f87171;
+      }
+      .live-dot {
+         width: 8px;
+         height: 8px;
+         border-radius: 50%;
+         background: currentColor;
+         animation: pulseDot 1.8s infinite;
+      }
+      @keyframes pulseDot {
+         0%, 100% { opacity: 1; transform: scale(1); }
+         50% { opacity: 0.4; transform: scale(0.8); }
+      }
+      .refresh-btn {
+         display: inline-flex;
+         align-items: center;
+         gap: 8px;
+         padding: 8px 16px;
+         border: none;
+         border-radius: 8px;
+         background: var(--primary-color, #fa5b0f);
+         color: #fff;
+         font-family: inherit;
+         font-size: 0.85rem;
+         font-weight: 600;
+         cursor: pointer;
+         transition: opacity 0.2s ease, transform 0.15s ease;
+      }
+      .refresh-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+      .refresh-btn:disabled { opacity: 0.6; cursor: wait; }
+
+      .kpi-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+         gap: 16px;
+         margin-bottom: 28px;
+      }
+      .dash-card {
+         background: var(--card-bg, #ffffff);
+         border: 1px solid var(--border-light, rgba(128, 128, 128, 0.2));
+         border-radius: 12px;
+         padding: 20px;
+         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      }
+      .kpi-label {
+         font-size: 0.78rem;
+         font-weight: 600;
+         text-transform: uppercase;
+         letter-spacing: 0.04em;
+         color: var(--text-muted, #6b7280);
+         margin-bottom: 8px;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+      }
+      .kpi-value {
+         font-size: 1.55rem;
+         font-weight: 800;
+         color: var(--text-dark, #111827);
+         line-height: 1.2;
+      }
+      .kpi-sub {
+         margin-top: 6px;
+         font-size: 0.82rem;
+         color: var(--text-muted, #6b7280);
+      }
+      .val-pos { color: #059669 !important; }
+      .val-neg { color: #dc2626 !important; }
+      [data-theme="dark"] .val-pos { color: #34d399 !important; }
+      [data-theme="dark"] .val-neg { color: #f87171 !important; }
+
+      .section-heading {
+         font-size: 1.15rem;
+         font-weight: 700;
+         color: var(--text-dark, #111827);
+         margin: 30px 0 14px;
+         display: flex;
+         align-items: center;
+         gap: 10px;
+      }
+      .section-heading i {
+         color: var(--primary-color, #fa5b0f);
+      }
+
+      .two-col-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+         gap: 18px;
+         margin-bottom: 24px;
+      }
+      .bot-card-header {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 10px;
+         padding-bottom: 12px;
+         margin-bottom: 14px;
+         border-bottom: 1px solid var(--border-light, rgba(128, 128, 128, 0.18));
+      }
+      .bot-title {
+         font-size: 1.05rem;
+         font-weight: 700;
+         color: var(--text-dark, #111827);
+      }
+      .badge {
+         display: inline-flex;
+         align-items: center;
+         gap: 5px;
+         padding: 4px 10px;
+         border-radius: 999px;
+         font-size: 0.75rem;
+         font-weight: 700;
+      }
+      .badge-up {
+         background: rgba(16, 185, 129, 0.14);
+         color: #059669;
+      }
+      .badge-down {
+         background: rgba(239, 68, 68, 0.14);
+         color: #dc2626;
+      }
+      .badge-neutral {
+         background: rgba(107, 114, 128, 0.15);
+         color: var(--text-muted, #6b7280);
+      }
+      [data-theme="dark"] .badge-up { color: #34d399; }
+      [data-theme="dark"] .badge-down { color: #f87171; }
+
+      .kv-list {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 10px 14px;
+         font-size: 0.86rem;
+      }
+      .kv-item span.k {
+         display: block;
+         font-size: 0.75rem;
+         color: var(--text-muted, #6b7280);
+      }
+      .kv-item strong.v {
+         color: var(--text-dark, #111827);
+         font-weight: 700;
+      }
+
+      .risk-badges {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 8px;
+         margin: 10px 0 24px;
+      }
+      .risk-chip {
+         padding: 6px 12px;
+         border-radius: 8px;
+         font-size: 0.8rem;
+         font-weight: 600;
+         background: var(--card-bg, #ffffff);
+         border: 1px solid var(--border-light, rgba(128, 128, 128, 0.22));
+         color: var(--text-dark, #111827);
+      }
+      .risk-chip i { color: var(--primary-color, #fa5b0f); margin-right: 6px; }
+
+      .progress-row {
+         margin-top: 12px;
+      }
+      .progress-meta {
+         display: flex;
+         justify-content: space-between;
+         font-size: 0.82rem;
+         font-weight: 600;
+         margin-bottom: 6px;
+         color: var(--text-dark, #111827);
+      }
+      .progress-track {
+         height: 9px;
+         border-radius: 999px;
+         background: rgba(128, 128, 128, 0.18);
+         overflow: hidden;
+      }
+      .progress-fill {
+         height: 100%;
+         border-radius: 999px;
+         background: linear-gradient(90deg, var(--primary-color, #fa5b0f), #fb923c);
+         transition: width 0.35s ease;
+      }
+      .service-list {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+         gap: 10px;
+         margin-top: 14px;
+      }
+      .service-item {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         gap: 8px;
+         padding: 10px 12px;
+         border-radius: 8px;
+         border: 1px solid var(--border-light, rgba(128, 128, 128, 0.2));
+         font-size: 0.82rem;
+      }
+      .service-item strong { color: var(--text-dark, #111827); font-weight: 600; }
+
+      .table-wrapper {
+         overflow: auto;
+         max-inline-size: 100%;
+         max-block-size: min(460px, 75vh);
+         container-type: inline-size;
+         border-radius: 10px;
+         border: 1px solid var(--border-light, rgba(128, 128, 128, 0.2));
+      }
+      .data-table {
+         width: 100%;
+         border-collapse: separate;
+         border-spacing: 0;
+         font-size: 0.86rem;
+         text-align: left;
+      }
+      .data-table caption {
+         position: absolute;
+         width: 1px;
+         height: 1px;
+         overflow: hidden;
+         clip: rect(0 0 0 0);
+      }
+      .data-table thead {
+         position: sticky;
+         inset-block-start: 0;
+         z-index: 1;
+         background: var(--card-bg, #ffffff);
+      }
+      .data-table th,
+      .data-table td {
+         padding: 11px 14px;
+         border-bottom: 1px solid var(--border-light, rgba(128, 128, 128, 0.16));
+         white-space: nowrap;
+      }
+      .data-table thead th {
+         font-size: 0.76rem;
+         text-transform: uppercase;
+         letter-spacing: 0.04em;
+         color: var(--text-muted, #6b7280);
+         font-weight: 700;
+      }
+      .data-table tbody th {
+         font-weight: 600;
+         color: var(--text-dark, #111827);
+         position: sticky;
+         inset-inline-start: 0;
+         background: var(--card-bg, #ffffff);
+      }
+      .data-table td {
+         color: var(--text-dark, #111827);
+      }
+
+      @container (width < 600px) {
+         .data-table, .data-table thead, .data-table tbody, .data-table tr, .data-table th, .data-table td {
+            display: block;
+         }
+         .data-table thead {
+            display: none;
+         }
+         .data-table tr {
+            margin-block-end: 12px;
+            border: 1px solid var(--border-light, rgba(128, 128, 128, 0.24));
+            border-radius: 10px;
+            padding: 6px 0;
+         }
+         .data-table tbody th {
+            position: sticky;
+            inset-block-start: 0;
+            z-index: 2;
+            border-bottom: 1px solid var(--border-light, rgba(128, 128, 128, 0.2));
+         }
+         .data-table td {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 1px dashed var(--border-light, rgba(128, 128, 128, 0.14));
+         }
+         .data-table td:last-child { border-bottom: none; }
+         .data-table {
+            --label-2: "Symbol";
+            --label-3: "Side";
+            --label-4: "Qty";
+            --label-5: "Price";
+            --label-6: "Notional";
+            --label-7: "Fee";
+            --label-8: "Realized PnL";
+         }
+         .data-table td:nth-child(2)::before { content: var(--label-2) ": "; color: var(--text-muted, #6b7280); font-weight: 600; }
+         .data-table td:nth-child(3)::before { content: var(--label-3) ": "; color: var(--text-muted, #6b7280); font-weight: 600; }
+         .data-table td:nth-child(4)::before { content: var(--label-4) ": "; color: var(--text-muted, #6b7280); font-weight: 600; }
+         .data-table td:nth-child(5)::before { content: var(--label-5) ": "; color: var(--text-muted, #6b7280); font-weight: 600; }
+         .data-table td:nth-child(6)::before { content: var(--label-6) ": "; color: var(--text-muted, #6b7280); font-weight: 600; }
+         .data-table td:nth-child(7)::before { content: var(--label-7) ": "; color: var(--text-muted, #6b7280); font-weight: 600; }
+         .data-table td:nth-child(8)::before { content: var(--label-8) ": "; color: var(--text-muted, #6b7280); font-weight: 600; }
+      }
+
+      .empty-state {
+         padding: 18px;
+         text-align: center;
+         color: var(--text-muted, #6b7280);
+         font-size: 0.9rem;
+      }
+   </style>
+</head>
+<body>
+   <header>
+      <div class="container">
+         <div class="row">
+            <div class="brand-name">
+               <a href="/en/index.html" class="logo">Kerem Uysal</a>
+            </div>
+
+            <nav class="navbar">
+               <ul>
+                  <li><a href="/en/index.html">Home</a></li>
+                  <li><a href="/en/muzik.html">Music Portfolio</a></li>
+                  <li><a href="/en/blog.html">Blog</a></li>
+                  <li><a href="/en/status.html" class="active">System &amp; Bot</a></li>
+                  <li><a href="/en/updates.html">Updates</a></li>
+               </ul>
+            </nav>
+
+            <div class="header-right">
+               <ul class="language">
+                  <li><a href="/en/status.html" class="active2">EN</a></li>
+                  <li><a href="/status.html">TR</a></li>
+               </ul>
+               <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                  <i class="fas fa-bars"></i>
+               </button>
+            </div>
+         </div>
+      </div>
+   </header>
+
+   <main>
+      <section class="status-section">
+         <div class="container">
+            <div class="row">
+               <div class="title text-center">
+                  <h1>SYSTEM &amp; MONEYBOT STATUS</h1>
+                  <p>Oracle Cloud Server Health &amp; Live 24/7 Binance Futures (Testnet) Monitor</p>
+               </div>
+            </div>
+
+            <div class="status-toolbar">
+               <div class="status-pill-group">
+                  <span id="conn-pill" class="status-pill"><span class="live-dot"></span> Connecting...</span>
+                  <span id="mode-pill" class="status-pill"><i class="fas fa-shield-halved"></i> Loading mode</span>
+                  <span id="updated-text" style="font-size: 0.82rem; color: var(--text-muted, #6b7280);">Last update: -</span>
+               </div>
+               <button id="refresh-btn" class="refresh-btn" type="button">
+                  <i class="fas fa-rotate"></i> Refresh Now
+               </button>
+            </div>
+
+            <div class="kpi-grid">
+               <div class="dash-card">
+                  <div class="kpi-label"><span>Wallet Balance</span><i class="fas fa-wallet"></i></div>
+                  <div id="kpi-wallet" class="kpi-value">--</div>
+                  <div id="kpi-avail" class="kpi-sub">Available: --</div>
+               </div>
+               <div class="dash-card">
+                  <div class="kpi-label"><span>Unrealized PnL</span><i class="fas fa-chart-line"></i></div>
+                  <div id="kpi-upnl" class="kpi-value">--</div>
+                  <div id="kpi-open-count" class="kpi-sub">Open Positions: --</div>
+               </div>
+               <div class="dash-card">
+                  <div class="kpi-label"><span>Realized PnL</span><i class="fas fa-coins"></i></div>
+                  <div id="kpi-rpnl" class="kpi-value">--</div>
+                  <div id="kpi-fees" class="kpi-sub">Total Fees: --</div>
+               </div>
+               <div class="dash-card">
+                  <div class="kpi-label"><span>Net Return</span><i class="fas fa-percent"></i></div>
+                  <div id="kpi-net" class="kpi-value">--</div>
+                  <div id="kpi-capital" class="kpi-sub">Initial: 5,000.00 USDT</div>
+               </div>
+            </div>
+
+            <div id="risk-badges" class="risk-badges"></div>
+
+            <h2 class="section-heading"><i class="fas fa-bolt"></i> Open Positions &amp; Exchange-Side Stop-Loss</h2>
+            <div id="positions-container" class="dash-card">
+               <div class="empty-state">Loading position telemetry...</div>
+            </div>
+
+            <h2 class="section-heading"><i class="fas fa-robot"></i> Bot Instances (Zero Repaint / Closed Candle)</h2>
+            <div id="bots-container" class="two-col-grid"></div>
+
+            <h2 class="section-heading"><i class="fas fa-receipt"></i> Recent Trades</h2>
+            <div class="dash-card" style="padding: 0; overflow: hidden;">
+               <div tabindex="0" role="region" aria-labelledby="trades-caption" class="table-wrapper">
+                  <table class="data-table">
+                     <caption id="trades-caption">MoneyBot Binance Futures executed trades history</caption>
+                     <thead>
+                        <tr>
+                           <th>Timestamp</th>
+                           <th>Symbol</th>
+                           <th>Side</th>
+                           <th>Quantity</th>
+                           <th>Price (USDT)</th>
+                           <th>Notional (USDT)</th>
+                           <th>Fee</th>
+                           <th>Realized PnL</th>
+                        </tr>
+                     </thead>
+                     <tbody id="trades-tbody">
+                        <tr><td colspan="8" class="empty-state">Loading recent fills...</td></tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+
+            <h2 class="section-heading"><i class="fas fa-server"></i> Oracle Cloud Server Health (vcn-1)</h2>
+            <div class="two-col-grid">
+               <div class="dash-card">
+                  <div class="bot-card-header">
+                     <span id="srv-host" class="bot-title">Server Resources</span>
+                     <span id="srv-uptime" class="badge badge-up">Uptime: --</span>
+                  </div>
+                  <div id="srv-meta" style="font-size: 0.83rem; color: var(--text-muted, #6b7280); margin-bottom: 10px;">--</div>
+                  <div class="progress-row">
+                     <div class="progress-meta"><span>CPU Usage</span><span id="srv-cpu-txt">--</span></div>
+                     <div class="progress-track"><div id="srv-cpu-bar" class="progress-fill" style="width: 0%"></div></div>
+                  </div>
+                  <div class="progress-row">
+                     <div class="progress-meta"><span>Memory (RAM)</span><span id="srv-ram-txt">--</span></div>
+                     <div class="progress-track"><div id="srv-ram-bar" class="progress-fill" style="width: 0%"></div></div>
+                  </div>
+                  <div class="progress-row">
+                     <div class="progress-meta"><span>Disk Usage (/)</span><span id="srv-disk-txt">--</span></div>
+                     <div class="progress-track"><div id="srv-disk-bar" class="progress-fill" style="width: 0%"></div></div>
+                  </div>
+               </div>
+               <div class="dash-card">
+                  <div class="bot-card-header">
+                     <span class="bot-title">24/7 Systemd Services</span>
+                     <span id="srv-svc-summary" class="badge badge-neutral">--</span>
+                  </div>
+                  <div id="services-grid" class="service-list"></div>
+               </div>
+            </div>
+         </div>
+      </section>
+   </main>
+
+   <footer>
+      <div class="container">
+         <div class="footer-logo">Kerem Uysal</div>
+         <div class="social">
+            <a href="https://github.com/keremuysal" aria-label="My GitHub Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/akeremuysal" aria-label="My LinkedIn Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/keremuysaljpg" aria-label="My Twitter Account" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/keremuysaljpg/" aria-label="My Instagram Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/keremuysal" aria-label="My YouTube Channel" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+         </div>
+         <div class="footer-links">
+            <a href="/en/status.html">System &amp; Bot</a>
+            <a href="/en/updates.html">Site Updates</a>
+            <a href="/sitemap.xml">Sitemap</a>
+         </div>
+         <div class="copyright">
+            <div class="renewable-container">
+               <img src="/img/100.webp" alt="Renewable Energy" width="28" height="28" loading="lazy">
+               <span class="renewable-energy">This site is powered by 100% renewable energy.</span>
+            </div>
+            <p>© <span id="year">2026</span> | Kerem Uysal. All rights reserved. (v3.0)</p>
+         </div>
+      </div>
+   </footer>
+
+   <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+      <i class="fas fa-moon"></i>
+      <i class="fas fa-sun"></i>
+   </button>
+
+   <script src="/js/app.js" defer></script>
+   <script>
+      (function() {
+         const API_URL = "https://agy.keremuysal.com/api/public/status";
+         const REFRESH_MS = 15000;
+         const LOCALE = "en-US";
+
+         function fmtNum(val, digits = 2) {
+            if (val === null || val === undefined || Number.isNaN(Number(val))) return "--";
+            return Number(val).toLocaleString(LOCALE, {
+               minimumFractionDigits: digits,
+               maximumFractionDigits: digits
+            });
+         }
+
+         function fmtSignedUsdt(val, digits = 4) {
+            if (val === null || val === undefined || Number.isNaN(Number(val))) return "--";
+            const n = Number(val);
+            const sign = n > 0 ? "+" : "";
+            return sign + n.toLocaleString(LOCALE, {
+               minimumFractionDigits: digits,
+               maximumFractionDigits: digits
+            }) + " USDT";
+         }
+
+         function fmtTime(iso) {
+            if (!iso) return "--";
+            const d = new Date(iso);
+            if (Number.isNaN(d.getTime())) return String(iso);
+            return new Intl.DateTimeFormat(LOCALE, {
+               dateStyle: "short",
+               timeStyle: "medium"
+            }).format(d);
+         }
+
+         function fmtDuration(sec) {
+            const total = Math.max(0, Math.floor(Number(sec) || 0));
+            const days = Math.floor(total / 86400);
+            const hours = Math.floor((total % 86400) / 3600);
+            const minutes = Math.floor((total % 3600) / 60);
+            if (typeof Intl !== "undefined" && typeof Intl.DurationFormat === "function") {
+               const df = new Intl.DurationFormat(LOCALE, { style: "narrow" });
+               return df.format({ days, hours, minutes });
+            }
+            return days + "d " + hours + "h " + minutes + "m";
+         }
+
+         function el(tag, className, text) {
+            const node = document.createElement(tag);
+            if (className) node.className = className;
+            if (text !== undefined && text !== null) node.textContent = String(text);
+            return node;
+         }
+
+         function setPnlClass(node, val) {
+            node.classList.remove("val-pos", "val-neg");
+            const n = Number(val);
+            if (n > 0) node.classList.add("val-pos");
+            else if (n < 0) node.classList.add("val-neg");
+         }
+
+         function renderRiskBadges(cfg) {
+            const wrap = document.getElementById("risk-badges");
+            wrap.replaceChildren();
+            if (!cfg) return;
+            const items = [
+               { icon: "fa-lock", label: "Margin: " + (cfg.margin_mode || "ISOLATED") },
+               { icon: "fa-gauge-high", label: "Leverage Lock: " + cfg.leverage + "x (Max 3x)" },
+               { icon: "fa-shield", label: "Risk / Trade: " + fmtNum(cfg.risk_per_trade_pct, 1) + "%" },
+               { icon: "fa-hand-paper", label: "Max Stop Dist: " + fmtNum(cfg.max_sl_pct, 1) + "%" },
+               { icon: "fa-crosshairs", label: cfg.stop_order_type || "STOP_MARKET MARK_PRICE" },
+               { icon: "fa-clock", label: "Poll Interval: " + cfg.poll_interval_seconds + "s" }
+            ];
+            items.forEach(item => {
+               const chip = el("span", "risk-chip");
+               chip.appendChild(el("i", "fas " + item.icon));
+               chip.appendChild(document.createTextNode(item.label));
+               wrap.appendChild(chip);
+            });
+         }
+
+         function renderPositions(positions) {
+            const wrap = document.getElementById("positions-container");
+            wrap.replaceChildren();
+            if (!positions || positions.length === 0) {
+               wrap.appendChild(el("div", "empty-state", "No open positions — 1H and 4H bots are waiting for the next closed-candle confluence signal."));
+               return;
+            }
+            const grid = el("div", "two-col-grid");
+            grid.style.marginBottom = "0";
+            positions.forEach(p => {
+               const card = el("div", "dash-card");
+               const header = el("div", "bot-card-header");
+               header.appendChild(el("span", "bot-title", p.symbol + " · " + p.leverage + "x " + p.margin_mode));
+               header.appendChild(el("span", "badge " + (p.side === "LONG" ? "badge-up" : "badge-down"), p.side));
+               card.appendChild(header);
+
+               const kv = el("div", "kv-list");
+               const rows = [
+                  ["Contracts", fmtNum(p.contracts, 4)],
+                  ["Notional", fmtNum(p.notional_usdt, 2) + " USDT"],
+                  ["Entry Price", "$" + fmtNum(p.entry_price, 2)],
+                  ["Mark Price", "$" + fmtNum(p.mark_price, 2)],
+                  ["Liquidation Price", "$" + fmtNum(p.liquidation_price, 2)],
+                  ["Unrealized PnL", fmtSignedUsdt(p.unrealized_pnl, 4) + " (" + fmtNum(p.roe_pct, 2) + "%)"],
+                  ["Exchange STOP_MARKET", p.stop_loss ? "$" + fmtNum(p.stop_loss.trigger_price, 2) + " (" + p.stop_loss.working_type + ")" : "Pending"]
+               ];
+               rows.forEach(([k, v], idx) => {
+                  const item = el("div", "kv-item");
+                  item.appendChild(el("span", "k", k));
+                  const valEl = el("strong", "v", v);
+                  if (idx === 5) setPnlClass(valEl, p.unrealized_pnl);
+                  item.appendChild(valEl);
+                  kv.appendChild(item);
+               });
+               card.appendChild(kv);
+               grid.appendChild(card);
+            });
+            wrap.appendChild(grid);
+         }
+
+         function trendBadge(val) {
+            if (val === 1) return el("span", "badge badge-up", "▲ Bullish (+1)");
+            if (val === -1) return el("span", "badge badge-down", "▼ Bearish (-1)");
+            return el("span", "badge badge-neutral", "Neutral");
+         }
+
+         function renderBots(bots) {
+            const wrap = document.getElementById("bots-container");
+            wrap.replaceChildren();
+            ["1h", "4h"].forEach(tf => {
+               const b = bots && bots[tf];
+               if (!b) return;
+               const card = el("div", "dash-card");
+               const header = el("div", "bot-card-header");
+               header.appendChild(el("span", "bot-title", tf.toUpperCase() + " Bot · " + b.symbol));
+               const sig = b.signal || "HOLD";
+               const sigCls = sig === "LONG" ? "badge-up" : (sig === "SHORT" ? "badge-down" : "badge-neutral");
+               header.appendChild(el("span", "badge " + sigCls, "Signal: " + sig));
+               card.appendChild(header);
+
+               const kv = el("div", "kv-list");
+               const pairs = [
+                  ["Live Price", b.live_price != null ? "$" + fmtNum(b.live_price, 2) : "--"],
+                  ["Closed Candle Price", b.closed_bar_price != null ? "$" + fmtNum(b.closed_bar_price, 2) : "--"],
+                  ["Supertrend State", null, trendBadge(b.st_trend)],
+                  ["Matrix Trend Ribbon", null, trendBadge(b.mtr_trend)],
+                  ["Supertrend (Dn / Up)", "$" + fmtNum(b.st_dn, 2) + " / $" + fmtNum(b.st_up, 2)],
+                  ["Matrix Bands (H / L)", "$" + fmtNum(b.mtr_h, 2) + " / $" + fmtNum(b.mtr_l, 2)],
+                  ["Last Closed Candle", fmtTime(b.closed_timestamp)],
+                  ["Last Bot Poll", fmtTime(b.updated_at_utc)]
+               ];
+               pairs.forEach(([k, v, node]) => {
+                  const item = el("div", "kv-item");
+                  item.appendChild(el("span", "k", k));
+                  if (node) item.appendChild(node);
+                  else item.appendChild(el("strong", "v", v));
+                  kv.appendChild(item);
+               });
+               card.appendChild(kv);
+               wrap.appendChild(card);
+            });
+         }
+
+         function renderTrades(trades) {
+            const tbody = document.getElementById("trades-tbody");
+            tbody.replaceChildren();
+            if (!trades || trades.length === 0) {
+               const tr = document.createElement("tr");
+               const td = el("td", "empty-state", "No executed fills yet.");
+               td.colSpan = 8;
+               tr.appendChild(td);
+               tbody.appendChild(tr);
+               return;
+            }
+            trades.forEach(t => {
+               const tr = document.createElement("tr");
+               tr.appendChild(el("th", null, fmtTime(t.timestamp_utc)));
+               tr.appendChild(el("td", null, t.symbol));
+               const sideTd = el("td", null);
+               sideTd.appendChild(el("span", "badge " + (t.side === "BUY" ? "badge-up" : "badge-down"), t.side));
+               tr.appendChild(sideTd);
+               tr.appendChild(el("td", null, fmtNum(t.amount, 4)));
+               tr.appendChild(el("td", null, "$" + fmtNum(t.price, 2)));
+               tr.appendChild(el("td", null, fmtNum(t.cost_usdt, 2) + " USDT"));
+               tr.appendChild(el("td", null, fmtNum(t.fee, 4) + " " + (t.fee_asset || "USDT")));
+               const pnlTd = el("td", null, fmtSignedUsdt(t.realized_pnl, 4));
+               setPnlClass(pnlTd, t.realized_pnl);
+               pnlTd.style.fontWeight = "700";
+               tr.appendChild(pnlTd);
+               tbody.appendChild(tr);
+            });
+         }
+
+         function renderServer(srv) {
+            if (!srv) return;
+            document.getElementById("srv-host").textContent = "Server: " + srv.hostname + " (" + srv.arch + ")";
+            document.getElementById("srv-uptime").textContent = "Uptime: " + fmtDuration(srv.uptime_seconds);
+            document.getElementById("srv-meta").textContent =
+               srv.os + " · " + srv.cpu_cores + " vCPU · Load: " + (srv.load_avg || []).join(" / ");
+
+            document.getElementById("srv-cpu-txt").textContent = fmtNum(srv.cpu_usage_pct, 1) + "%";
+            document.getElementById("srv-cpu-bar").style.width = Math.min(100, Number(srv.cpu_usage_pct || 0)) + "%";
+
+            document.getElementById("srv-ram-txt").textContent =
+               fmtNum(srv.ram_used_gb, 2) + " / " + fmtNum(srv.ram_total_gb, 2) + " GB (" + fmtNum(srv.ram_pct, 1) + "%)";
+            document.getElementById("srv-ram-bar").style.width = Math.min(100, Number(srv.ram_pct || 0)) + "%";
+
+            document.getElementById("srv-disk-txt").textContent =
+               fmtNum(srv.disk_used_gb, 2) + " / " + fmtNum(srv.disk_total_gb, 2) + " GB (" + fmtNum(srv.disk_pct, 1) + "%)";
+            document.getElementById("srv-disk-bar").style.width = Math.min(100, Number(srv.disk_pct || 0)) + "%";
+
+            const svcs = srv.services || [];
+            const activeCount = svcs.filter(s => s.active).length;
+            const summaryBadge = document.getElementById("srv-svc-summary");
+            summaryBadge.textContent = activeCount + " / " + svcs.length + " Active";
+            summaryBadge.className = "badge " + (activeCount === svcs.length ? "badge-up" : "badge-down");
+
+            const svcGrid = document.getElementById("services-grid");
+            svcGrid.replaceChildren();
+            svcs.forEach(s => {
+               const row = el("div", "service-item");
+               row.appendChild(el("strong", null, s.label || s.unit));
+               row.appendChild(el("span", "badge " + (s.active ? "badge-up" : "badge-down"), s.active ? "Active" : s.state));
+               svcGrid.appendChild(row);
+            });
+         }
+
+         async function loadStatus() {
+            const btn = document.getElementById("refresh-btn");
+            const connPill = document.getElementById("conn-pill");
+            btn.disabled = true;
+            try {
+               const res = await fetch(API_URL, { cache: "no-store" });
+               if (!res.ok) throw new Error("HTTP " + res.status);
+               const data = await res.json();
+               const tr = data.trading || {};
+               const acc = tr.account || {};
+               const sum = tr.summary || {};
+
+               connPill.className = "status-pill " + (tr.exchange_ok ? "ok" : "err");
+               connPill.replaceChildren(el("span", "live-dot"), document.createTextNode(tr.exchange_ok ? "Live Connected (Oracle -> Binance)" : "Exchange Warning"));
+
+               const modePill = document.getElementById("mode-pill");
+               modePill.replaceChildren(el("i", "fas fa-shield-halved"), document.createTextNode(tr.mode === "BINANCE_FUTURES_LIVE" ? "LIVE FUTURES" : "Binance Futures Testnet (Demo)"));
+
+               document.getElementById("updated-text").textContent = "Last update: " + fmtTime(data.generated_at_utc);
+
+               document.getElementById("kpi-wallet").textContent = acc.total_wallet_balance != null ? fmtNum(acc.total_wallet_balance, 2) + " USDT" : "--";
+               document.getElementById("kpi-avail").textContent = "Available: " + (acc.available_balance != null ? fmtNum(acc.available_balance, 2) + " USDT" : "--");
+
+               const upnlEl = document.getElementById("kpi-upnl");
+               upnlEl.textContent = fmtSignedUsdt(acc.unrealized_pnl, 4);
+               setPnlClass(upnlEl, acc.unrealized_pnl);
+               document.getElementById("kpi-open-count").textContent = "Open Positions: " + (sum.open_positions_count || 0) + " · SL Orders: " + (sum.open_sl_orders_count || 0);
+
+               const rpnlEl = document.getElementById("kpi-rpnl");
+               rpnlEl.textContent = fmtSignedUsdt(sum.realized_pnl, 4);
+               setPnlClass(rpnlEl, sum.realized_pnl);
+               document.getElementById("kpi-fees").textContent = "Total Fees: -" + fmtNum(sum.commissions, 4) + " USDT";
+
+               const netEl = document.getElementById("kpi-net");
+               netEl.textContent = fmtSignedUsdt(acc.net_pnl, 4);
+               setPnlClass(netEl, acc.net_pnl);
+               document.getElementById("kpi-capital").textContent = "Return: " + fmtNum(acc.net_return_pct, 3) + "% (Initial: " + fmtNum(acc.initial_capital, 0) + " USDT)";
+
+               renderRiskBadges(tr.risk_config);
+               renderPositions(tr.positions);
+               renderBots(tr.bots);
+               renderTrades(tr.recent_trades);
+               renderServer(data.server);
+            } catch (err) {
+               connPill.className = "status-pill err";
+               connPill.replaceChildren(el("span", "live-dot"), document.createTextNode("Connection Error: " + err.message));
+            } finally {
+               btn.disabled = false;
+            }
+         }
+
+         document.getElementById("refresh-btn").addEventListener("click", loadStatus);
+         document.addEventListener("visibilitychange", function() {
+            if (!document.hidden) loadStatus();
+         });
+         loadStatus();
+         setInterval(function() {
+            if (!document.hidden) loadStatus();
+         }, REFRESH_MS);
+      })();
+   </script>
+</body>
+</html>
