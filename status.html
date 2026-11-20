@@ -9,11 +9,11 @@
 <head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta name="keywords" content="Kerem Uysal, Oracle Server Status, MoneyBot, Trading Bot, Binance Futures, Supertrend, Matrix Trend Ribbon">
-   <meta name="description" content="Oracle Cloud sunucu sağlığı ve 7/24 çalışan MoneyBot Binance Futures (Supertrend + Matrix Trend Ribbon) canlı alım-satım takip paneli.">
+   <meta name="keywords" content="Kerem Uysal, Oracle Server Status, Liq AI Bot V3.2, 3-Seed Ensemble, Binance Futures, Reinforcement Learning, LightGBM, TCN">
+   <meta name="description" content="Oracle Cloud sunucu sağlığı ve 7/24 çalışan Liq AI Bot V3.2 (3-Seed LightGBM + TCN-GRU-Attn + PPO Ensemble) Binance Futures Testnet canlı takip paneli.">
    <meta name="author" content="Kerem Uysal">
    <meta name="robots" content="noindex, nofollow" />
-   <title>Kerem Uysal | Sistem &amp; Trading Bot Durumu</title>
+   <title>Kerem Uysal | Sistem &amp; Liq AI Bot V3.2 Durumu</title>
 
    <link rel="canonical" href="https://keremuysal.com/status.html" />
    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/status.html" />
@@ -400,6 +400,54 @@
          color: var(--text-muted, #6b7280);
          font-size: 0.9rem;
       }
+      .seed-votes-box {
+         margin-top: 14px;
+         padding-top: 12px;
+         border-top: 1px dashed var(--border-light, rgba(128, 128, 128, 0.22));
+      }
+      .seed-votes-title {
+         font-size: 0.74rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         letter-spacing: 0.04em;
+         color: var(--text-muted, #6b7280);
+         margin-bottom: 8px;
+      }
+      .seed-votes-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+         gap: 8px;
+      }
+      .seed-vote-chip {
+         padding: 8px 10px;
+         border-radius: 8px;
+         border: 1px solid var(--border-light, rgba(128, 128, 128, 0.2));
+         background: rgba(128, 128, 128, 0.04);
+         font-size: 0.78rem;
+      }
+      .seed-vote-chip .seed-name {
+         display: block;
+         font-size: 0.7rem;
+         font-weight: 700;
+         color: var(--text-muted, #6b7280);
+         margin-bottom: 3px;
+      }
+      .seed-vote-chip .seed-act {
+         display: block;
+         font-weight: 700;
+         color: var(--text-dark, #111827);
+      }
+      .seed-vote-chip .seed-meta {
+         display: block;
+         font-size: 0.71rem;
+         color: var(--text-muted, #6b7280);
+         margin-top: 2px;
+      }
+      .refresh-btn:focus-visible,
+      .table-wrapper:focus-visible {
+         outline: 3px solid var(--primary-color, #fa5b0f);
+         outline-offset: 2px;
+      }
    </style>
 </head>
 <body>
@@ -438,19 +486,19 @@
          <div class="container">
             <div class="row">
                <div class="title text-center">
-                  <h1>SİSTEM &amp; MONEYBOT DURUMU</h1>
-                  <p>Oracle Cloud Sunucu Sağlığı &amp; Binance Futures (Testnet) Canlı İşlem Takibi</p>
+                  <h1>SİSTEM &amp; LIQ AI BOT V3.2 DURUMU</h1>
+                  <p>Oracle Cloud Sunucu Sağlığı &amp; 3-Seed AI Ensemble (5M Binance Futures Testnet) Canlı Takip</p>
                </div>
             </div>
 
             <div class="status-toolbar">
                <div class="status-pill-group">
-                  <span id="conn-pill" class="status-pill"><span class="live-dot"></span> Bağlanıyor...</span>
-                  <span id="mode-pill" class="status-pill"><i class="fas fa-shield-halved"></i> Mod yükleniyor</span>
+                  <span id="conn-pill" class="status-pill" aria-live="polite"><span class="live-dot" aria-hidden="true"></span> Bağlanıyor...</span>
+                  <span id="mode-pill" class="status-pill"><i class="fas fa-shield-halved" aria-hidden="true"></i> Mod yükleniyor</span>
                   <span id="updated-text" style="font-size: 0.82rem; color: var(--text-muted, #6b7280);">Son güncelleme: -</span>
                </div>
                <button id="refresh-btn" class="refresh-btn" type="button">
-                  <i class="fas fa-rotate"></i> Şimdi Yenile
+                  <i class="fas fa-rotate" aria-hidden="true"></i> Şimdi Yenile
                </button>
             </div>
 
@@ -486,26 +534,26 @@
                <div class="empty-state">Veriler yükleniyor...</div>
             </div>
 
-            <!-- 1H & 4H Bot Durumları -->
-            <h2 class="section-heading"><i class="fas fa-robot"></i> Çalışan Bot Örnekleri (Sıfır Repaint / Kapalı Mum)</h2>
+            <!-- 3-Seed AI Bot Durumları -->
+            <h2 class="section-heading"><i class="fas fa-robot" aria-hidden="true"></i> Liq AI Bot V3.2 · 3-Seed Oylama &amp; Canlı Sinyaller (5M Kapalı Mum)</h2>
             <div id="bots-container" class="two-col-grid"></div>
 
             <!-- Son İşlemler Tablosu -->
-            <h2 class="section-heading"><i class="fas fa-receipt"></i> Son Alım-Satım İşlemleri</h2>
+            <h2 class="section-heading"><i class="fas fa-receipt" aria-hidden="true"></i> Son Alım-Satım İşlemleri</h2>
             <div class="dash-card" style="padding: 0; overflow: hidden;">
                <div tabindex="0" role="region" aria-labelledby="trades-caption" class="table-wrapper">
                   <table class="data-table">
-                     <caption id="trades-caption">MoneyBot Binance Futures gerçekleşen işlemler tablosu</caption>
+                     <caption id="trades-caption">Liq AI Bot V3.2 Binance Futures Testnet gerçekleşen işlemler tablosu</caption>
                      <thead>
                         <tr>
-                           <th>Tarih / Saat</th>
-                           <th>Sembol</th>
-                           <th>Yön</th>
-                           <th>Miktar</th>
-                           <th>Fiyat (USDT)</th>
-                           <th>Hacim (USDT)</th>
-                           <th>Komisyon</th>
-                           <th>Gerçekleşen K/Z</th>
+                           <th scope="col">Tarih / Saat</th>
+                           <th scope="col">Sembol</th>
+                           <th scope="col">Yön</th>
+                           <th scope="col">Miktar</th>
+                           <th scope="col">Fiyat (USDT)</th>
+                           <th scope="col">Hacim (USDT)</th>
+                           <th scope="col">Komisyon</th>
+                           <th scope="col">Gerçekleşen K/Z</th>
                         </tr>
                      </thead>
                      <tbody id="trades-tbody">
@@ -652,9 +700,18 @@
             const wrap = document.getElementById("risk-badges");
             wrap.replaceChildren();
             if (!cfg) return;
-            const items = [
+            const isAiV32 = Boolean(cfg.vote_threshold || cfg.risk_scale);
+            const items = isAiV32 ? [
                { icon: "fa-lock", label: "Marjin: " + (cfg.margin_mode || "ISOLATED") },
-               { icon: "fa-gauge-high", label: "Kaldıraç Kilidi: " + cfg.leverage + "x (Max 3x)" },
+               { icon: "fa-gauge-high", label: "Kaldıraç: " + cfg.leverage },
+               { icon: "fa-users", label: "Ensemble Oylama: " + cfg.vote_threshold + " Çoğunluk" },
+               { icon: "fa-bolt", label: "Risk Scale: " + fmtNum(cfg.risk_scale, 1) + "x (Maks " + (cfg.max_concurrent_positions || 2) + " Poz.)" },
+               { icon: "fa-shield", label: "Hard Stop: " + fmtNum(cfg.hard_stop_roi_pct ?? -45, 0) + "% ROI · Trail: +" + fmtNum(cfg.trail_activate_roi_pct ?? 40, 0) + "% ROI" },
+               { icon: "fa-crosshairs", label: cfg.stop_order_type || "STOP_MARKET MARK_PRICE" },
+               { icon: "fa-clock", label: "Mum Döngüsü: " + cfg.poll_interval_seconds + " sn (5M)" }
+            ] : [
+               { icon: "fa-lock", label: "Marjin: " + (cfg.margin_mode || "ISOLATED") },
+               { icon: "fa-gauge-high", label: "Kaldıraç: " + cfg.leverage + "x" },
                { icon: "fa-shield", label: "İşlem Başına Risk: %" + fmtNum(cfg.risk_per_trade_pct, 1) },
                { icon: "fa-hand-paper", label: "Maks Stop Mesafesi: %" + fmtNum(cfg.max_sl_pct, 1) },
                { icon: "fa-crosshairs", label: cfg.stop_order_type || "STOP_MARKET MARK_PRICE" },
@@ -663,6 +720,7 @@
             items.forEach(item => {
                const chip = el("span", "risk-chip");
                const ico = el("i", "fas " + item.icon);
+               ico.setAttribute("aria-hidden", "true");
                chip.appendChild(ico);
                chip.appendChild(document.createTextNode(item.label));
                wrap.appendChild(chip);
@@ -673,7 +731,7 @@
             const wrap = document.getElementById("positions-container");
             wrap.replaceChildren();
             if (!positions || positions.length === 0) {
-               wrap.appendChild(el("div", "empty-state", "Şu an açık pozisyon yok — 1H ve 4H botlar bir sonraki mum kapanışı Confluence sinyalini bekliyor."));
+               wrap.appendChild(el("div", "empty-state", "Şu an açık pozisyon yok — 3-Seed V3.2 Ensemble (ETH & XRP) bir sonraki 5 dakikalık kapalı mumda 2/3 çoğunluk sinyalini bekliyor."));
                return;
             }
             const grid = el("div", "two-col-grid");
@@ -720,7 +778,7 @@
             const wrap = document.getElementById("bots-container");
             wrap.replaceChildren();
             if (!bots) return;
-            const preferred = ["1h", "4h", "1m_sol", "1m_xrp", "5m_doge"];
+            const preferred = ["5m_eth", "5m_xrp", "1h", "4h", "1m_sol", "1m_xrp", "5m_doge"];
             const keys = preferred.filter(k => bots[k]).concat(
                Object.keys(bots).filter(k => !preferred.includes(k))
             );
@@ -730,20 +788,31 @@
                const tf = (b.timeframe || key).toUpperCase();
                const card = el("div", "dash-card");
                const header = el("div", "bot-card-header");
-               const titleText = tf + " · " + b.symbol + (b.role === "TESTNET_FAST" ? " (Hızlı Testnet)" : "");
+               const isAi = b.role === "LIQ_AI_V32_ENSEMBLE";
+               const titleText = tf + " · " + b.symbol + (isAi ? " (V3.2 Ensemble)" : (b.role === "TESTNET_FAST" ? " (Hızlı Testnet)" : ""));
                header.appendChild(el("span", "bot-title", titleText));
-               const sig = b.signal || "HOLD";
+               const sig = b.signal || "WAIT_HOLD";
+               const badgeText = b.consensus_label || ("Sinyal: " + sig);
                const sigCls = sig === "LONG" ? "badge-up" : (sig === "SHORT" ? "badge-down" : "badge-neutral");
-               header.appendChild(el("span", "badge " + sigCls, "Sinyal: " + sig));
+               header.appendChild(el("span", "badge " + sigCls, badgeText));
                card.appendChild(header);
 
                const ap = b.local_active_position;
                const posLabel = ap
-                  ? ap.side + " @ " + fmtPrice(ap.entry_price) + " (SL: " + fmtPrice(ap.sl_price) + ")"
-                  : "Yok (Geçiş bekleniyor)";
+                  ? ap.side + (ap.leverage ? " " + ap.leverage + "x" : "") + " @ " + fmtPrice(ap.entry_price) + " (SL: " + fmtPrice(ap.sl_price) + ")"
+                  : "Flat (2/3 Çoğunluk Bekleniyor)";
 
                const kv = el("div", "kv-list");
-               const pairs = [
+               const pairs = isAi ? [
+                  ["Canlı Piyasa Fiyatı", b.live_price != null ? fmtPrice(b.live_price) : "--"],
+                  ["Kapanmış 5M Mum", b.closed_bar_price != null ? fmtPrice(b.closed_bar_price) : "--"],
+                  ["Supertrend (5M)", null, trendBadge(b.st_trend)],
+                  ["Matrix Trend Ribbon", null, trendBadge(b.mtr_trend)],
+                  ["AI Edge / Safe 25x", (b.mean_ai_edge != null ? (b.mean_ai_edge >= 0 ? "+" : "") + fmtNum(b.mean_ai_edge, 3) : "--") + " / " + (b.mean_safe_25x != null ? fmtNum(b.mean_safe_25x, 2) : "--")],
+                  ["Makro Uyum (Boğa / Ayı)", fmtNum((b.macro_bull || 0) * 100, 0) + "% / " + fmtNum((b.macro_bear || 0) * 100, 0) + "%"],
+                  ["Aktif Pozisyon", posLabel],
+                  ["Son 5M Değerlendirme", fmtTime(b.updated_at_utc)]
+               ] : [
                   ["Canlı Piyasa Fiyatı", b.live_price != null ? fmtPrice(b.live_price) : "--"],
                   ["Kapanmış Mum Fiyatı", b.closed_bar_price != null ? fmtPrice(b.closed_bar_price) : "--"],
                   ["Supertrend Durumu", null, trendBadge(b.st_trend)],
@@ -761,6 +830,25 @@
                   kv.appendChild(item);
                });
                card.appendChild(kv);
+
+               if (Array.isArray(b.agent_votes) && b.agent_votes.length > 0) {
+                  const vbox = el("div", "seed-votes-box");
+                  vbox.appendChild(el("div", "seed-votes-title", "3-Seed Ajan Oylaması (LGBM + TCN-Attn + PPO)"));
+                  const vgrid = el("div", "seed-votes-grid");
+                  b.agent_votes.forEach(v => {
+                     const chip = el("div", "seed-vote-chip");
+                     chip.appendChild(el("span", "seed-name", String(v.agent || "").toUpperCase()));
+                     const actEl = el("span", "seed-act", v.gated_action || "WAIT_HOLD");
+                     if (String(v.gated_action || "").startsWith("LONG")) actEl.classList.add("val-pos");
+                     else if (String(v.gated_action || "").startsWith("SHORT")) actEl.classList.add("val-neg");
+                     chip.appendChild(actEl);
+                     const edgeSign = Number(v.ai_edge) >= 0 ? "+" : "";
+                     chip.appendChild(el("span", "seed-meta", "Edge: " + edgeSign + fmtNum(v.ai_edge, 2) + " · S25: " + fmtNum(v.safe_25x, 2)));
+                     vgrid.appendChild(chip);
+                  });
+                  vbox.appendChild(vgrid);
+                  card.appendChild(vbox);
+               }
                wrap.appendChild(card);
             });
          }
@@ -778,7 +866,9 @@
             }
             trades.forEach(t => {
                const tr = document.createElement("tr");
-               tr.appendChild(el("th", null, fmtTime(t.timestamp_utc)));
+               const th = el("th", null, fmtTime(t.timestamp_utc));
+               th.setAttribute("scope", "row");
+               tr.appendChild(th);
                tr.appendChild(el("td", null, t.symbol));
                const sideTd = el("td", null);
                sideTd.appendChild(el("span", "badge " + (t.side === "BUY" ? "badge-up" : "badge-down"), t.side));

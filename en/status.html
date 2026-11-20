@@ -9,11 +9,11 @@
 <head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <meta name="keywords" content="Kerem Uysal, Oracle Server Status, MoneyBot, Trading Bot, Binance Futures, Supertrend, Matrix Trend Ribbon">
-   <meta name="description" content="Live Oracle Cloud server telemetry and 24/7 MoneyBot Binance Futures (Supertrend + Matrix Trend Ribbon) trading dashboard.">
+   <meta name="keywords" content="Kerem Uysal, Oracle Server Status, Liq AI Bot V3.2, 3-Seed Ensemble, Binance Futures, Reinforcement Learning, LightGBM, TCN">
+   <meta name="description" content="Live Oracle Cloud server telemetry and 24/7 Liq AI Bot V3.2 (3-Seed LightGBM + TCN-GRU-Attn + PPO Ensemble) Binance Futures Testnet dashboard.">
    <meta name="author" content="Kerem Uysal">
    <meta name="robots" content="noindex, nofollow" />
-   <title>Kerem Uysal | System &amp; Trading Bot Status</title>
+   <title>Kerem Uysal | System &amp; Liq AI Bot V3.2 Status</title>
 
    <link rel="canonical" href="https://keremuysal.com/en/status.html" />
    <link rel="alternate" hreflang="tr" href="https://keremuysal.com/status.html" />
@@ -399,6 +399,54 @@
          color: var(--text-muted, #6b7280);
          font-size: 0.9rem;
       }
+      .seed-votes-box {
+         margin-top: 14px;
+         padding-top: 12px;
+         border-top: 1px dashed var(--border-light, rgba(128, 128, 128, 0.22));
+      }
+      .seed-votes-title {
+         font-size: 0.74rem;
+         font-weight: 700;
+         text-transform: uppercase;
+         letter-spacing: 0.04em;
+         color: var(--text-muted, #6b7280);
+         margin-bottom: 8px;
+      }
+      .seed-votes-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+         gap: 8px;
+      }
+      .seed-vote-chip {
+         padding: 8px 10px;
+         border-radius: 8px;
+         border: 1px solid var(--border-light, rgba(128, 128, 128, 0.2));
+         background: rgba(128, 128, 128, 0.04);
+         font-size: 0.78rem;
+      }
+      .seed-vote-chip .seed-name {
+         display: block;
+         font-size: 0.7rem;
+         font-weight: 700;
+         color: var(--text-muted, #6b7280);
+         margin-bottom: 3px;
+      }
+      .seed-vote-chip .seed-act {
+         display: block;
+         font-weight: 700;
+         color: var(--text-dark, #111827);
+      }
+      .seed-vote-chip .seed-meta {
+         display: block;
+         font-size: 0.71rem;
+         color: var(--text-muted, #6b7280);
+         margin-top: 2px;
+      }
+      .refresh-btn:focus-visible,
+      .table-wrapper:focus-visible {
+         outline: 3px solid var(--primary-color, #fa5b0f);
+         outline-offset: 2px;
+      }
    </style>
 </head>
 <body>
@@ -437,19 +485,19 @@
          <div class="container">
             <div class="row">
                <div class="title text-center">
-                  <h1>SYSTEM &amp; MONEYBOT STATUS</h1>
-                  <p>Oracle Cloud Server Health &amp; Live 24/7 Binance Futures (Testnet) Monitor</p>
+                  <h1>SYSTEM &amp; LIQ AI BOT V3.2 STATUS</h1>
+                  <p>Oracle Cloud Server Health &amp; 3-Seed AI Ensemble (5M Binance Futures Testnet) Monitor</p>
                </div>
             </div>
 
             <div class="status-toolbar">
                <div class="status-pill-group">
-                  <span id="conn-pill" class="status-pill"><span class="live-dot"></span> Connecting...</span>
-                  <span id="mode-pill" class="status-pill"><i class="fas fa-shield-halved"></i> Loading mode</span>
+                  <span id="conn-pill" class="status-pill" aria-live="polite"><span class="live-dot" aria-hidden="true"></span> Connecting...</span>
+                  <span id="mode-pill" class="status-pill"><i class="fas fa-shield-halved" aria-hidden="true"></i> Loading mode</span>
                   <span id="updated-text" style="font-size: 0.82rem; color: var(--text-muted, #6b7280);">Last update: -</span>
                </div>
                <button id="refresh-btn" class="refresh-btn" type="button">
-                  <i class="fas fa-rotate"></i> Refresh Now
+                  <i class="fas fa-rotate" aria-hidden="true"></i> Refresh Now
                </button>
             </div>
 
@@ -483,24 +531,24 @@
                <div class="empty-state">Loading position telemetry...</div>
             </div>
 
-            <h2 class="section-heading"><i class="fas fa-robot"></i> Bot Instances (Zero Repaint / Closed Candle)</h2>
+            <h2 class="section-heading"><i class="fas fa-robot" aria-hidden="true"></i> Liq AI Bot V3.2 · 3-Seed Voting &amp; Live Signals (5M Closed Candle)</h2>
             <div id="bots-container" class="two-col-grid"></div>
 
-            <h2 class="section-heading"><i class="fas fa-receipt"></i> Recent Trades</h2>
+            <h2 class="section-heading"><i class="fas fa-receipt" aria-hidden="true"></i> Recent Trades</h2>
             <div class="dash-card" style="padding: 0; overflow: hidden;">
                <div tabindex="0" role="region" aria-labelledby="trades-caption" class="table-wrapper">
                   <table class="data-table">
-                     <caption id="trades-caption">MoneyBot Binance Futures executed trades history</caption>
+                     <caption id="trades-caption">Liq AI Bot V3.2 Binance Futures Testnet executed trades history</caption>
                      <thead>
                         <tr>
-                           <th>Timestamp</th>
-                           <th>Symbol</th>
-                           <th>Side</th>
-                           <th>Quantity</th>
-                           <th>Price (USDT)</th>
-                           <th>Notional (USDT)</th>
-                           <th>Fee</th>
-                           <th>Realized PnL</th>
+                           <th scope="col">Timestamp</th>
+                           <th scope="col">Symbol</th>
+                           <th scope="col">Side</th>
+                           <th scope="col">Quantity</th>
+                           <th scope="col">Price (USDT)</th>
+                           <th scope="col">Notional (USDT)</th>
+                           <th scope="col">Fee</th>
+                           <th scope="col">Realized PnL</th>
                         </tr>
                      </thead>
                      <tbody id="trades-tbody">
@@ -645,9 +693,18 @@
             const wrap = document.getElementById("risk-badges");
             wrap.replaceChildren();
             if (!cfg) return;
-            const items = [
+            const isAiV32 = Boolean(cfg.vote_threshold || cfg.risk_scale);
+            const items = isAiV32 ? [
                { icon: "fa-lock", label: "Margin: " + (cfg.margin_mode || "ISOLATED") },
-               { icon: "fa-gauge-high", label: "Leverage Lock: " + cfg.leverage + "x (Max 3x)" },
+               { icon: "fa-gauge-high", label: "Leverage: " + cfg.leverage },
+               { icon: "fa-users", label: "Ensemble Vote: " + cfg.vote_threshold + " Majority" },
+               { icon: "fa-bolt", label: "Risk Scale: " + fmtNum(cfg.risk_scale, 1) + "x (Max " + (cfg.max_concurrent_positions || 2) + " Pos.)" },
+               { icon: "fa-shield", label: "Hard Stop: " + fmtNum(cfg.hard_stop_roi_pct ?? -45, 0) + "% ROI · Trail: +" + fmtNum(cfg.trail_activate_roi_pct ?? 40, 0) + "% ROI" },
+               { icon: "fa-crosshairs", label: cfg.stop_order_type || "STOP_MARKET MARK_PRICE" },
+               { icon: "fa-clock", label: "Bar Cycle: " + cfg.poll_interval_seconds + "s (5M)" }
+            ] : [
+               { icon: "fa-lock", label: "Margin: " + (cfg.margin_mode || "ISOLATED") },
+               { icon: "fa-gauge-high", label: "Leverage: " + cfg.leverage + "x" },
                { icon: "fa-shield", label: "Risk / Trade: " + fmtNum(cfg.risk_per_trade_pct, 1) + "%" },
                { icon: "fa-hand-paper", label: "Max Stop Dist: " + fmtNum(cfg.max_sl_pct, 1) + "%" },
                { icon: "fa-crosshairs", label: cfg.stop_order_type || "STOP_MARKET MARK_PRICE" },
@@ -655,7 +712,9 @@
             ];
             items.forEach(item => {
                const chip = el("span", "risk-chip");
-               chip.appendChild(el("i", "fas " + item.icon));
+               const ico = el("i", "fas " + item.icon);
+               ico.setAttribute("aria-hidden", "true");
+               chip.appendChild(ico);
                chip.appendChild(document.createTextNode(item.label));
                wrap.appendChild(chip);
             });
@@ -665,7 +724,7 @@
             const wrap = document.getElementById("positions-container");
             wrap.replaceChildren();
             if (!positions || positions.length === 0) {
-               wrap.appendChild(el("div", "empty-state", "No open positions — 1H and 4H bots are waiting for the next closed-candle confluence signal."));
+               wrap.appendChild(el("div", "empty-state", "No open positions — 3-Seed V3.2 Ensemble (ETH & XRP) is waiting for the next closed 5M candle 2/3 majority consensus."));
                return;
             }
             const grid = el("div", "two-col-grid");
@@ -711,7 +770,7 @@
             const wrap = document.getElementById("bots-container");
             wrap.replaceChildren();
             if (!bots) return;
-            const preferred = ["1h", "4h", "1m_sol", "1m_xrp", "5m_doge"];
+            const preferred = ["5m_eth", "5m_xrp", "1h", "4h", "1m_sol", "1m_xrp", "5m_doge"];
             const keys = preferred.filter(k => bots[k]).concat(
                Object.keys(bots).filter(k => !preferred.includes(k))
             );
@@ -721,20 +780,31 @@
                const tf = (b.timeframe || key).toUpperCase();
                const card = el("div", "dash-card");
                const header = el("div", "bot-card-header");
-               const titleText = tf + " · " + b.symbol + (b.role === "TESTNET_FAST" ? " (Fast Testnet)" : "");
+               const isAi = b.role === "LIQ_AI_V32_ENSEMBLE";
+               const titleText = tf + " · " + b.symbol + (isAi ? " (V3.2 Ensemble)" : (b.role === "TESTNET_FAST" ? " (Fast Testnet)" : ""));
                header.appendChild(el("span", "bot-title", titleText));
-               const sig = b.signal || "HOLD";
+               const sig = b.signal || "WAIT_HOLD";
+               const badgeText = b.consensus_label || ("Signal: " + sig);
                const sigCls = sig === "LONG" ? "badge-up" : (sig === "SHORT" ? "badge-down" : "badge-neutral");
-               header.appendChild(el("span", "badge " + sigCls, "Signal: " + sig));
+               header.appendChild(el("span", "badge " + sigCls, badgeText));
                card.appendChild(header);
 
                const ap = b.local_active_position;
                const posLabel = ap
-                  ? ap.side + " @ " + fmtPrice(ap.entry_price) + " (SL: " + fmtPrice(ap.sl_price) + ")"
-                  : "Flat (Waiting transition)";
+                  ? ap.side + (ap.leverage ? " " + ap.leverage + "x" : "") + " @ " + fmtPrice(ap.entry_price) + " (SL: " + fmtPrice(ap.sl_price) + ")"
+                  : "Flat (Waiting 2/3 consensus)";
 
                const kv = el("div", "kv-list");
-               const pairs = [
+               const pairs = isAi ? [
+                  ["Live Price", b.live_price != null ? fmtPrice(b.live_price) : "--"],
+                  ["Closed 5M Bar", b.closed_bar_price != null ? fmtPrice(b.closed_bar_price) : "--"],
+                  ["Supertrend (5M)", null, trendBadge(b.st_trend)],
+                  ["Matrix Trend Ribbon", null, trendBadge(b.mtr_trend)],
+                  ["AI Edge / Safe 25x", (b.mean_ai_edge != null ? (b.mean_ai_edge >= 0 ? "+" : "") + fmtNum(b.mean_ai_edge, 3) : "--") + " / " + (b.mean_safe_25x != null ? fmtNum(b.mean_safe_25x, 2) : "--")],
+                  ["Macro Align (Bull / Bear)", fmtNum((b.macro_bull || 0) * 100, 0) + "% / " + fmtNum((b.macro_bear || 0) * 100, 0) + "%"],
+                  ["Active Position", posLabel],
+                  ["Last 5M Evaluation", fmtTime(b.updated_at_utc)]
+               ] : [
                   ["Live Price", b.live_price != null ? fmtPrice(b.live_price) : "--"],
                   ["Closed Candle Price", b.closed_bar_price != null ? fmtPrice(b.closed_bar_price) : "--"],
                   ["Supertrend State", null, trendBadge(b.st_trend)],
@@ -752,6 +822,25 @@
                   kv.appendChild(item);
                });
                card.appendChild(kv);
+
+               if (Array.isArray(b.agent_votes) && b.agent_votes.length > 0) {
+                  const vbox = el("div", "seed-votes-box");
+                  vbox.appendChild(el("div", "seed-votes-title", "3-Seed Agent Voting (LGBM + TCN-Attn + PPO)"));
+                  const vgrid = el("div", "seed-votes-grid");
+                  b.agent_votes.forEach(v => {
+                     const chip = el("div", "seed-vote-chip");
+                     chip.appendChild(el("span", "seed-name", String(v.agent || "").toUpperCase()));
+                     const actEl = el("span", "seed-act", v.gated_action || "WAIT_HOLD");
+                     if (String(v.gated_action || "").startsWith("LONG")) actEl.classList.add("val-pos");
+                     else if (String(v.gated_action || "").startsWith("SHORT")) actEl.classList.add("val-neg");
+                     chip.appendChild(actEl);
+                     const edgeSign = Number(v.ai_edge) >= 0 ? "+" : "";
+                     chip.appendChild(el("span", "seed-meta", "Edge: " + edgeSign + fmtNum(v.ai_edge, 2) + " · S25: " + fmtNum(v.safe_25x, 2)));
+                     vgrid.appendChild(chip);
+                  });
+                  vbox.appendChild(vgrid);
+                  card.appendChild(vbox);
+               }
                wrap.appendChild(card);
             });
          }
@@ -769,7 +858,9 @@
             }
             trades.forEach(t => {
                const tr = document.createElement("tr");
-               tr.appendChild(el("th", null, fmtTime(t.timestamp_utc)));
+               const th = el("th", null, fmtTime(t.timestamp_utc));
+               th.setAttribute("scope", "row");
+               tr.appendChild(th);
                tr.appendChild(el("td", null, t.symbol));
                const sideTd = el("td", null);
                sideTd.appendChild(el("span", "badge " + (t.side === "BUY" ? "badge-up" : "badge-down"), t.side));
